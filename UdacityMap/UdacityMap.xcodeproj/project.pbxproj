@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		229505811F23BB2E007BD763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229505801F23BB2E007BD763 /* AppDelegate.swift */; };
+		229505831F23BB2E007BD763 /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229505821F23BB2E007BD763 /* CredentialsController.swift */; };
+		229505861F23BB2E007BD763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229505841F23BB2E007BD763 /* Main.storyboard */; };
+		229505881F23BB2E007BD763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229505871F23BB2E007BD763 /* Assets.xcassets */; };
+		2295058B1F23BB2E007BD763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229505891F23BB2E007BD763 /* LaunchScreen.storyboard */; };
+		229505931F23BB5D007BD763 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229505921F23BB5D007BD763 /* GoogleService-Info.plist */; };
+		B49E506A5D9A556E585E8869 /* Pods_UdacityMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC37B7FC3BB2BCC7829065B /* Pods_UdacityMap.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2295057D1F23BB2E007BD763 /* UdacityMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		229505801F23BB2E007BD763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		229505821F23BB2E007BD763 /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
+		229505851F23BB2E007BD763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		229505871F23BB2E007BD763 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2295058A1F23BB2E007BD763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2295058C1F23BB2E007BD763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229505921F23BB5D007BD763 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5EC37B7FC3BB2BCC7829065B /* Pods_UdacityMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UdacityMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A13BE6F340459C1E2C88C854 /* Pods-UdacityMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdacityMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap.debug.xcconfig"; sourceTree = "<group>"; };
+		BA528C43160C882E169B58F8 /* Pods-UdacityMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdacityMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2295057A1F23BB2E007BD763 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B49E506A5D9A556E585E8869 /* Pods_UdacityMap.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		229505741F23BB2E007BD763 = {
+			isa = PBXGroup;
+			children = (
+				2295057F1F23BB2E007BD763 /* UdacityMap */,
+				2295057E1F23BB2E007BD763 /* Products */,
+				58F8760CE328BC69E550A274 /* Pods */,
+				80C5693967799C79E255B189 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2295057E1F23BB2E007BD763 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2295057D1F23BB2E007BD763 /* UdacityMap.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2295057F1F23BB2E007BD763 /* UdacityMap */ = {
+			isa = PBXGroup;
+			children = (
+				229505801F23BB2E007BD763 /* AppDelegate.swift */,
+				229505821F23BB2E007BD763 /* CredentialsController.swift */,
+				229505841F23BB2E007BD763 /* Main.storyboard */,
+				229505871F23BB2E007BD763 /* Assets.xcassets */,
+				229505891F23BB2E007BD763 /* LaunchScreen.storyboard */,
+				2295058C1F23BB2E007BD763 /* Info.plist */,
+				229505921F23BB5D007BD763 /* GoogleService-Info.plist */,
+			);
+			path = UdacityMap;
+			sourceTree = "<group>";
+		};
+		58F8760CE328BC69E550A274 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A13BE6F340459C1E2C88C854 /* Pods-UdacityMap.debug.xcconfig */,
+				BA528C43160C882E169B58F8 /* Pods-UdacityMap.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		80C5693967799C79E255B189 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EC37B7FC3BB2BCC7829065B /* Pods_UdacityMap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2295057C1F23BB2E007BD763 /* UdacityMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2295058F1F23BB2E007BD763 /* Build configuration list for PBXNativeTarget "UdacityMap" */;
+			buildPhases = (
+				D76ADA69254C3B492A0E123A /* [CP] Check Pods Manifest.lock */,
+				229505791F23BB2E007BD763 /* Sources */,
+				2295057A1F23BB2E007BD763 /* Frameworks */,
+				2295057B1F23BB2E007BD763 /* Resources */,
+				74F64BD891A0366354594EDB /* [CP] Embed Pods Frameworks */,
+				946FD95F42C6654281E78071 /* [CP] Copy Pods Resources */,
+				229505941F23D1C9007BD763 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UdacityMap;
+			productName = UdacityMap;
+			productReference = 2295057D1F23BB2E007BD763 /* UdacityMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		229505751F23BB2E007BD763 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = 3CodeGeeks;
+				TargetAttributes = {
+					2295057C1F23BB2E007BD763 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = F7CXK2PKWD;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 229505781F23BB2E007BD763 /* Build configuration list for PBXProject "UdacityMap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 229505741F23BB2E007BD763;
+			productRefGroup = 2295057E1F23BB2E007BD763 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2295057C1F23BB2E007BD763 /* UdacityMap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2295057B1F23BB2E007BD763 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2295058B1F23BB2E007BD763 /* LaunchScreen.storyboard in Resources */,
+				229505931F23BB5D007BD763 /* GoogleService-Info.plist in Resources */,
+				229505881F23BB2E007BD763 /* Assets.xcassets in Resources */,
+				229505861F23BB2E007BD763 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		229505941F23D1C9007BD763 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "JSON_FILE=\"${SRCROOT}/UdacityMap/crashreport.json\"\nGOOGLE_APP_ID=1:482583768445:ios:8e7f85b264e5f0a3\n\ndefaults write com.google.SymbolUpload version -integer 1\n\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym-util.bash";
+		};
+		74F64BD891A0366354594EDB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		946FD95F42C6654281E78071 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D76ADA69254C3B492A0E123A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		229505791F23BB2E007BD763 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				229505831F23BB2E007BD763 /* CredentialsController.swift in Sources */,
+				229505811F23BB2E007BD763 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		229505841F23BB2E007BD763 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				229505851F23BB2E007BD763 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		229505891F23BB2E007BD763 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2295058A1F23BB2E007BD763 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2295058D1F23BB2E007BD763 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2295058E1F23BB2E007BD763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		229505901F23BB2E007BD763 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A13BE6F340459C1E2C88C854 /* Pods-UdacityMap.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F7CXK2PKWD;
+				INFOPLIST_FILE = UdacityMap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.3codegeeks.UdacityMap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		229505911F23BB2E007BD763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA528C43160C882E169B58F8 /* Pods-UdacityMap.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = F7CXK2PKWD;
+				INFOPLIST_FILE = UdacityMap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.3codegeeks.UdacityMap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		229505781F23BB2E007BD763 /* Build configuration list for PBXProject "UdacityMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2295058D1F23BB2E007BD763 /* Debug */,
+				2295058E1F23BB2E007BD763 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2295058F1F23BB2E007BD763 /* Build configuration list for PBXNativeTarget "UdacityMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				229505901F23BB2E007BD763 /* Debug */,
+				229505911F23BB2E007BD763 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 229505751F23BB2E007BD763 /* Project object */;
+}
