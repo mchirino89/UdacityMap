@@ -13,6 +13,7 @@
 		229505881F23BB2E007BD763 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229505871F23BB2E007BD763 /* Assets.xcassets */; };
 		2295058B1F23BB2E007BD763 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229505891F23BB2E007BD763 /* LaunchScreen.storyboard */; };
 		229505931F23BB5D007BD763 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229505921F23BB5D007BD763 /* GoogleService-Info.plist */; };
+		22DE2FCD1F2C1C8E00F76A58 /* ButtonStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DE2FCC1F2C1C8E00F76A58 /* ButtonStyleController.swift */; };
 		B49E506A5D9A556E585E8869 /* Pods_UdacityMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC37B7FC3BB2BCC7829065B /* Pods_UdacityMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		2295058A1F23BB2E007BD763 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2295058C1F23BB2E007BD763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		229505921F23BB5D007BD763 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22DE2FCC1F2C1C8E00F76A58 /* ButtonStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleController.swift; sourceTree = "<group>"; };
 		5EC37B7FC3BB2BCC7829065B /* Pods_UdacityMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UdacityMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13BE6F340459C1E2C88C854 /* Pods-UdacityMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdacityMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap.debug.xcconfig"; sourceTree = "<group>"; };
 		BA528C43160C882E169B58F8 /* Pods-UdacityMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdacityMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-UdacityMap/Pods-UdacityMap.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				229505891F23BB2E007BD763 /* LaunchScreen.storyboard */,
 				2295058C1F23BB2E007BD763 /* Info.plist */,
 				229505921F23BB5D007BD763 /* GoogleService-Info.plist */,
+				22DE2FCC1F2C1C8E00F76A58 /* ButtonStyleController.swift */,
 			);
 			path = UdacityMap;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DE2FCD1F2C1C8E00F76A58 /* ButtonStyleController.swift in Sources */,
 				229505831F23BB2E007BD763 /* CredentialsController.swift in Sources */,
 				229505811F23BB2E007BD763 /* AppDelegate.swift in Sources */,
 			);
