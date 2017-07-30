@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let rootView = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.navigationView)
         
+        // If previosly logged, then skip login view
         if UserDefaults.standard.value(forKey: Constants.APPConfiguration.LoggedIn) != nil {
             let tabView = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.tabView)
             (rootView as! UINavigationController).pushViewController(tabView, animated: false)

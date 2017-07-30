@@ -25,7 +25,7 @@ class ButtonStyle: UIButton {
     
     @IBInspectable var borderColor: UIColor = UIColor.clear {
         didSet {
-            return self.layer.backgroundColor = borderColor.cgColor
+            return self.layer.borderColor = borderColor.cgColor
         }
     }    
 }
