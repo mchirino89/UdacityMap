@@ -18,12 +18,17 @@ extension Networking {
         static let AppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         
         static let ApiScheme = "https"
+        
     }
     
     // MARK: URLs
     struct URL {
         static let SignUp = "https://www.udacity.com/account/auth#!/signup"
         static let Udacity = "https://www.udacity.com"
+    }
+    
+    struct Variables {
+        static let studentCell = "studentListCell"
     }
     
     // MARK: Methods
