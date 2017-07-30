@@ -6,12 +6,12 @@
 //  Copyright © 2017 3CodeGeeks. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-extension Networking {
+class Constants {
 
     // MARK: Constants
-    struct Constants {
+    struct APIConfiguration {
         
         // MARK: API Key
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
@@ -21,14 +21,27 @@ extension Networking {
         
     }
     
+    struct APPConfiguration {
+        static let LoggedIn = "loggedIn"
+        
+        func logOutUser() {
+            UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
+            
+        }
+    }
+    
+    struct Storyboard {
+        static let studentCell = "studentListCell"
+        static let loginSegue = "loggedSegue"
+        static let loginView = "loginView"
+        static let tabView = "tabView"
+        static let navigationView = "navigationView"
+    }
+    
     // MARK: URLs
     struct URL {
         static let SignUp = "https://www.udacity.com/account/auth#!/signup"
         static let Udacity = "https://www.udacity.com"
-    }
-    
-    struct Variables {
-        static let studentCell = "studentListCell"
     }
     
     // MARK: Methods
@@ -89,4 +102,9 @@ extension Networking {
         static let UserID = "id"
         
     }
+}
+
+func logOutUser(navigationController: UINavigationController?) {
+    UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
+    navigationController?.popToRootViewController(animated: true)
 }

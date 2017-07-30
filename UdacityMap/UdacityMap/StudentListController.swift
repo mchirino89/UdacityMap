@@ -17,6 +17,7 @@ class StudentListController: UIViewController {
     }
     
     @IBAction func logoutAction(_ sender: Any) {
+        logOutUser(navigationController: navigationController)
     }
 
     @IBAction func refreshAction(_ sender: Any) {
@@ -33,8 +34,10 @@ extension StudentListController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Networking.Variables.studentCell) as! StudentCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.studentCell) as! StudentCell
         cell.studentNameLabel.text = "Student \(indexPath.row + 1)"
+        cell.separatorInset.left = 30 + cell.iconImage.bounds.size.width
         return cell
     }
     

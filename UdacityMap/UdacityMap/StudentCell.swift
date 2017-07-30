@@ -9,5 +9,6 @@
 import UIKit
 
 class StudentCell: UITableViewCell {
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var studentNameLabel: UILabel!
 }
