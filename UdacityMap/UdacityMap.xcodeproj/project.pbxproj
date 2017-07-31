@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220C30831F2E8E210054723F /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220C30821F2E8E210054723F /* LocationController.swift */; };
 		229505811F23BB2E007BD763 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229505801F23BB2E007BD763 /* AppDelegate.swift */; };
 		229505831F23BB2E007BD763 /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229505821F23BB2E007BD763 /* CredentialsController.swift */; };
 		229505861F23BB2E007BD763 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229505841F23BB2E007BD763 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		220C30821F2E8E210054723F /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		2295057D1F23BB2E007BD763 /* UdacityMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229505801F23BB2E007BD763 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		229505821F23BB2E007BD763 /* CredentialsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				229505821F23BB2E007BD763 /* CredentialsController.swift */,
 				22B0B8EE1F2D3608002A8D35 /* MapController.swift */,
 				22B0B8F31F2D3E92002A8D35 /* StudentListController.swift */,
+				220C30821F2E8E210054723F /* LocationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				229505811F23BB2E007BD763 /* AppDelegate.swift in Sources */,
 				22B0B8EF1F2D3608002A8D35 /* MapController.swift in Sources */,
 				22B0B8F41F2D3E92002A8D35 /* StudentListController.swift in Sources */,
+				220C30831F2E8E210054723F /* LocationController.swift in Sources */,
 				22DE2FCF1F2C308800F76A58 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

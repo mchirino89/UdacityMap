@@ -15,6 +15,7 @@ class MapController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
     }
     
     @IBAction func logoutAction(_ sender: Any) {

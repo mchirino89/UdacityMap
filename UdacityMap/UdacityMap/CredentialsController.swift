@@ -16,11 +16,12 @@ class CredentialsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addDoneButtonOnKeyboard()
+//        addDoneButtonOnKeyboard()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
     }
     
     @IBAction func loginAction() {
@@ -66,25 +67,7 @@ class CredentialsController: UIViewController {
         return keyboardSize.cgRectValue.height
     }
     
-    // Adapted method from this post https://stackoverflow.com/questions/28338981/how-to-add-done-button-to-numpad-in-ios-8-using-swift to improve UX
-    func addDoneButtonOnKeyboard() {
-        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
-        doneToolbar.barStyle = UIBarStyle.default
-        
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(CredentialsController.doneButtonAction))
-        
-        let items = NSMutableArray()
-        items.add(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil))
-        items.add(done)
-        
-        doneToolbar.items = items as? [UIBarButtonItem]
-        doneToolbar.sizeToFit()
-        
-        emailTextField.inputAccessoryView = doneToolbar
-        passwordTextField.inputAccessoryView = doneToolbar
-    }
-    
-    func doneButtonAction() {
+    func dismissKeyboardAction() {
         view.endEditing(true)
     }
 
@@ -113,4 +96,5 @@ extension CredentialsController: UITextFieldDelegate {
         enableLogin(textField)
         return true
     }
+
 }
