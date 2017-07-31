@@ -12,9 +12,13 @@ import MapKit
 class MapController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var viewNavigationItem: UINavigationItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewNavigationItem.titleView = getCustomTitle()
+
         performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
     }
     

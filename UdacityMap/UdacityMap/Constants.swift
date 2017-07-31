@@ -108,3 +108,11 @@ func logOutUser(navigationController: UINavigationController?) {
     UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
     navigationController?.popToRootViewController(animated: true)
 }
+
+func getCustomTitle() -> UILabel {
+    let titleLabel = UILabel()
+    titleLabel.text = "On the map"
+    titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 20)
+    titleLabel.sizeToFit()
+    return titleLabel
+}

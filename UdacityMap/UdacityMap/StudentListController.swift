@@ -11,9 +11,11 @@ import UIKit
 class StudentListController: UIViewController {
 
     @IBOutlet weak var studentListTableView: UITableView!
+    @IBOutlet weak var viewNavigationItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewNavigationItem.titleView = getCustomTitle()
     }
     
     @IBAction func logoutAction(_ sender: Any) {
