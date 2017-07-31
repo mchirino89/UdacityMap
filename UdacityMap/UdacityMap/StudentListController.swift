@@ -24,9 +24,6 @@ class StudentListController: UIViewController {
 
     @IBAction func refreshAction(_ sender: Any) {
     }
-    
-    @IBAction func addLocationAction(_ sender: Any) {
-    }
 }
 
 extension StudentListController: UITableViewDataSource, UITableViewDelegate {

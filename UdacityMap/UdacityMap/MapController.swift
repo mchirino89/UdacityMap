@@ -26,9 +26,6 @@ class MapController: UIViewController {
         logOutUser(navigationController: navigationController)
     }
     
-    @IBAction func addLocationAction(_ sender: Any) {
-    }
-    
     @IBAction func refreshAction(_ sender: Any) {
     }
 }

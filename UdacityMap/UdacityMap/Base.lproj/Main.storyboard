@@ -207,7 +207,6 @@
                                             </barButtonItem>
                                             <barButtonItem image="pin" id="Tg4-87-oFt">
                                                 <connections>
-                                                    <action selector="addLocationAction:" destination="SxB-fs-uNH" id="icX-io-Chb"/>
                                                     <segue destination="HMd-Ao-yKh" kind="presentation" id="zNG-tC-nV0"/>
                                                 </connections>
                                             </barButtonItem>
@@ -300,7 +299,7 @@
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wc-Aj-fIf">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="257.66666666666669"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cWG-zK-YMJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="257.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh5-kM-hRD">
@@ -361,6 +360,9 @@
                                                                     <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="HMd-Ao-yKh" id="1eW-GG-qAd"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -396,12 +398,15 @@
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YqG-uW-7eR">
                                 <rect key="frame" x="0.0" y="257.33333333333326" width="414" height="478.66666666666674"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HMd-Ao-yKh" id="E9T-rn-O9y"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnl-va-eOm">
                                 <rect key="frame" x="0.0" y="257.66666666666669" width="414" height="220.66666666666663"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KoV-eg-vkM">
-                                        <rect key="frame" x="20.333333333333343" y="71.666666666666629" width="372.33333333333337" height="77.333333333333371"/>
+                                        <rect key="frame" x="20.333333333333343" y="71.666666666666629" width="372.33333333333337" height="77"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -461,9 +466,35 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
-                            <view hidden="YES" alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-Uf-uWd">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-Uf-uWd">
                                 <rect key="frame" x="0.0" y="478.33333333333326" width="414" height="257.66666666666674"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUb-kc-aVx" customClass="ButtonStyle" customModule="UdacityMap" customModuleProvider="target">
+                                        <rect key="frame" x="157.33333333333331" y="79.000000000000057" width="99.999999999999943" height="100"/>
+                                        <color key="backgroundColor" red="1" green="0.2333333333" blue="0.0" alpha="0.94558005140000001" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="CpK-7d-yue"/>
+                                            <constraint firstAttribute="width" secondItem="xUb-kc-aVx" secondAttribute="height" multiplier="1:1" id="wby-5y-8QZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" red="0.96462470290000002" green="0.96475964780000001" blue="0.96458214519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submitLinkAction" destination="HMd-Ao-yKh" eventType="touchUpInside" id="FfL-ho-Zjg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.75387949486301364" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -482,6 +513,8 @@
                             <constraint firstItem="IK1-Uf-uWd" firstAttribute="height" secondItem="31D-R7-FIW" secondAttribute="height" id="XYF-Zn-FKO"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="centerX" secondItem="zed-Aw-6k2" secondAttribute="centerX" id="YF7-8j-SUu"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="top" secondItem="wnl-va-eOm" secondAttribute="bottom" id="Yk4-ir-28O"/>
+                            <constraint firstItem="xUb-kc-aVx" firstAttribute="centerY" secondItem="7PA-No-A5K" secondAttribute="centerY" id="Yyt-vw-JWF"/>
+                            <constraint firstItem="xUb-kc-aVx" firstAttribute="centerX" secondItem="7PA-No-A5K" secondAttribute="centerX" id="cM9-lZ-yxH"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="width" secondItem="zed-Aw-6k2" secondAttribute="width" id="gmp-ss-Npa"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="height" secondItem="zed-Aw-6k2" secondAttribute="height" id="pc2-SE-RZE"/>
                             <constraint firstItem="YqG-uW-7eR" firstAttribute="leading" secondItem="lkq-3S-SB0" secondAttribute="leading" id="rXo-En-oCw"/>
@@ -503,6 +536,7 @@
                         <outlet property="questionView" destination="6Gz-UR-6tp" id="GBn-VR-iRI"/>
                         <outlet property="sharingTextField" destination="auO-rB-fvG" id="eC2-sR-X6e"/>
                         <outlet property="sharingView" destination="dpW-Ml-1d3" id="0Yn-o6-TDm"/>
+                        <outlet property="submitButton" destination="xUb-kc-aVx" id="qLg-Ol-EMw"/>
                         <outlet property="topVisualEffectView" destination="5wc-Aj-fIf" id="J26-Pm-Mkg"/>
                         <outlet property="typedAddressTextField" destination="KoV-eg-vkM" id="5fw-55-rju"/>
                     </connections>
@@ -540,7 +574,6 @@
                                             </barButtonItem>
                                             <barButtonItem image="pin" id="Asd-Yn-yAF">
                                                 <connections>
-                                                    <action selector="addLocationAction:" destination="xlG-jK-E2p" id="SXm-fz-RJM"/>
                                                     <segue destination="HMd-Ao-yKh" kind="presentation" identifier="addLocationFromMapSegue" id="Xav-gU-Nik"/>
                                                 </connections>
                                             </barButtonItem>
@@ -550,6 +583,9 @@
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-Ut-ZQa">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xlG-jK-E2p" id="b3S-zI-HoV"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.96462470293045044" green="0.96475964784622192" blue="0.96458214521408081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

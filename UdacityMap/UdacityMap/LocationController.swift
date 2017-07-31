@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class LocationController: UIViewController {
     
@@ -22,6 +23,8 @@ class LocationController: UIViewController {
     @IBOutlet weak var sharingView: UIView!
     @IBOutlet weak var sharingTextField: UITextField!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var submitButton: ButtonStyle!
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +34,11 @@ class LocationController: UIViewController {
         questionView.addGestureRecognizer(dismissKeyboardTap)
         addressMap.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
+        
     }
     
     func showKeyboardAction() {
-        questionView.isHidden ? sharingTextField.becomeFirstResponder() : typedAddressTextField.becomeFirstResponder()
+        _ = questionView.isHidden ? sharingTextField.becomeFirstResponder() : typedAddressTextField.becomeFirstResponder()
     }
     
     func dismissKeyboardAction() {
@@ -75,18 +79,35 @@ class LocationController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func submitLinkAction() {
+        dismiss(animated: true, completion: {
+            // Update views
+        })
+    }
 }
 
 extension LocationController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        findLocationButton.isEnabled = !textField.text!.isEmpty
-        sharingTextField.isEnabled = !textField.text!.isEmpty
+        findLocationButton.isEnabled = !typedAddressTextField.text!.isEmpty
+        submitButton.isEnabled = !sharingTextField.text!.isEmpty
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField == typedAddressTextField ? locateAddressInMap() : addSharingLink()
         return !textField.text!.isEmpty
     }
+    
+}
+
+extension LocationController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        dismissKeyboardAction()
+    }
+    
+}
+
+extension LocationController: CLLocationManagerDelegate {
     
 }
