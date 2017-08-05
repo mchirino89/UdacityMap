@@ -24,25 +24,6 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
-        let _ = Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: "{\"udacity\": {\"username\": \"m.chirino89@gmail.com\", \"password\": \"QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI\"}}") {
-            (results, error) in
-            if let error = error {
-                print(error)
-            } else {
-                guard let JSONresponse = results else { return }
-                print(JSONresponse)
-                print("Account: ")
-                print(JSONresponse[Constants.JSONResponseKeys.Account]![Constants.JSONResponseKeys.Key]!!)
-                print("Session:")
-                print(JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID]!!)
-//                Networking.sharedInstance().userID = results?[Constants.JSONResponseKeys.Account]?[Constants.JSONResponseKeys.Key] as? Int
-//                results!.
-//                Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]?[Constants.JSONResponseKeys.UserID] as? String
-//                print(Networking.sharedInstance().userID!)
-//                print(Networking.sharedInstance().sessionID!)
-            }
-            print("\n\n\n")
-        }
     }
     
     @IBAction func loginAction() {
@@ -56,23 +37,48 @@ class CredentialsController: UIViewController {
     // Only when both textfileds are populated will login button be enabled
     func enableLogin(_ textField: UITextField) {
         textField.returnKeyType = textField == emailTextField && passwordTextField.text!.isEmpty ? .next : .go
-        loginButton.isEnabled = true
-//        loginButton.isEnabled = !passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        loginButton.isEnabled = !passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+    
+    private func setWaitinView(isOn: Bool) {
+        isOn ? view.bringSubview(toFront: waitingVisualEffect) : view.sendSubview(toBack: waitingVisualEffect)
+        waitingVisualEffect.alpha = isOn ? 1 : 0
     }
     
     func performLogin() {
         view.endEditing(true)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.setWaitinView(isOn: true)
+        })
         
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.waitinTopConstraint.constant = 0
-//        })
-//        if success
-//        UserDefaults.standard.set(true, forKey: Constants.APPConfiguration.LoggedIn)
-//        performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
-//        passwordTextField.text = ""
-//        emailTextField.text = ""
-//        else
-//        present(getErrorAlert(), animated: true)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+            // Quick question: Is this the proper form to prevent a retain cycle in here?
+            [unowned self] in
+            let _ = Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}") {
+                (results, error) in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async{
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.setWaitinView(isOn: false)
+                        })
+                        self.present(self.getErrorAlert(), animated: true)
+                    }
+                } else {
+                    guard let JSONresponse = results else { return }
+                    print(JSONresponse)
+                    Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID] as? String
+                    print(Networking.sharedInstance().sessionID!)
+                    UserDefaults.standard.set(true, forKey: Constants.APPConfiguration.LoggedIn)
+                    DispatchQueue.main.async{
+                        self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
+                        self.passwordTextField.text = ""
+                        self.emailTextField.text = ""
+                        self.setWaitinView(isOn: false)
+                    }
+                }
+            }
+        }
     }
     
     func getErrorAlert() -> UIAlertController {

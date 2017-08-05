@@ -44,6 +44,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-KG-zdY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pAi-1h-pLl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-oC-Cv0">
+                                            <rect key="frame" x="189" y="350" width="37" height="37"/>
+                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loggin in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqi-Oa-eDH">
+                                            <rect key="frame" x="162" y="403" width="90.333333333333343" height="27.333333333333314"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerX" secondItem="pAi-1h-pLl" secondAttribute="centerX" id="GvG-mP-n0R"/>
+                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="top" secondItem="fuM-oC-Cv0" secondAttribute="bottom" constant="16" id="J2I-pX-fAx"/>
+                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="centerX" secondItem="fuM-oC-Cv0" secondAttribute="centerX" id="SZ5-t3-SJ4"/>
+                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerY" secondItem="pAi-1h-pLl" secondAttribute="centerY" id="UbI-Oh-38s"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacityLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2UO-gl-xOa">
                                 <rect key="frame" x="133.66666666666669" y="110.33333333333331" width="147.00000000000006" height="147.33333333333337"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +86,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkU-iB-7sk">
                                 <rect key="frame" x="16.666666666666657" y="349.66666666666663" width="380.66666666666663" height="220.66666666666663"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-3I-2cm">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="cfcgh" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-3I-2cm">
                                         <rect key="frame" x="0.0" y="0.0" width="380.66666666666663" height="49.666666666666629"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
@@ -70,12 +96,12 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="XzT-QG-K1k"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mh-Yxm">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dfgdfg" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mh-Yxm">
                                         <rect key="frame" x="0.0" y="69.666666666666629" width="380.66666666666663" height="49.666666666666686"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="s4w-9z-6T9"/>
                                         </connections>
@@ -152,32 +178,6 @@
                                     <constraint firstItem="p2B-ZV-ljU" firstAttribute="centerX" secondItem="hkU-iB-7sk" secondAttribute="centerX" multiplier="0.5" id="ydi-O1-Ui1"/>
                                 </constraints>
                             </view>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-KG-zdY">
-                                <rect key="frame" x="0.0" y="1000" width="414" height="736"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pAi-1h-pLl">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-oC-Cv0">
-                                            <rect key="frame" x="189" y="350" width="37" height="37"/>
-                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loggin in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqi-Oa-eDH">
-                                            <rect key="frame" x="162" y="403" width="90.333333333333343" height="27.333333333333258"/>
-                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerX" secondItem="pAi-1h-pLl" secondAttribute="centerX" id="GvG-mP-n0R"/>
-                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="top" secondItem="fuM-oC-Cv0" secondAttribute="bottom" constant="16" id="J2I-pX-fAx"/>
-                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="centerX" secondItem="fuM-oC-Cv0" secondAttribute="centerX" id="SZ5-t3-SJ4"/>
-                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerY" secondItem="pAi-1h-pLl" secondAttribute="centerY" id="UbI-Oh-38s"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -189,7 +189,7 @@
                             <constraint firstItem="9o9-KG-zdY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Lnd-RG-wi6"/>
                             <constraint firstItem="Xm6-nB-q1O" firstAttribute="top" secondItem="2UO-gl-xOa" secondAttribute="bottom" constant="25" id="OPn-92-Rgj"/>
                             <constraint firstItem="Xm6-nB-q1O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P13-8S-2JC"/>
-                            <constraint firstItem="9o9-KG-zdY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="1000" id="XzY-6z-PbE"/>
+                            <constraint firstItem="9o9-KG-zdY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="XzY-6z-PbE"/>
                             <constraint firstItem="9o9-KG-zdY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="s2M-sS-2oG"/>
                             <constraint firstItem="2UO-gl-xOa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="skR-b3-N69"/>
                             <constraint firstItem="hkU-iB-7sk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="sxA-Y8-9N0"/>
