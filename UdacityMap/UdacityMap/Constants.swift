@@ -20,14 +20,8 @@ class Constants {
         static let ApiScheme = "https"
         
     }
-    
     struct APPConfiguration {
         static let LoggedIn = "loggedIn"
-        
-        func logOutUser() {
-            UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
-            
-        }
     }
     
     struct Storyboard {
@@ -41,7 +35,12 @@ class Constants {
     // MARK: URLs
     struct URL {
         static let SignUp = "https://www.udacity.com/account/auth#!/signup"
-        static let Udacity = "https://www.udacity.com"
+        static let Udacity = "udacity.com"
+        static let Parse = "parse.udacity.com/parse/classes"
+    }
+    
+    struct Path {
+        static let SignIn = "/api/session"
     }
     
     // MARK: Methods
@@ -98,9 +97,12 @@ class Constants {
         static let RequestToken = "request_token"
         static let SessionID = "session_id"
         
+        static let Session = "session"
+        
         // MARK: Account
         static let UserID = "id"
-        
+        static let Account = "account"
+        static let Key = "key"
     }
 }
 

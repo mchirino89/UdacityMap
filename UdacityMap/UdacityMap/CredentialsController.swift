@@ -13,6 +13,8 @@ class CredentialsController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var loginButton: ButtonStyle!
+    @IBOutlet weak var waitingVisualEffect: UIVisualEffectView!
+    @IBOutlet weak var waitinTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,25 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
+        let _ = Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: "{\"udacity\": {\"username\": \"m.chirino89@gmail.com\", \"password\": \"QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI\"}}") {
+            (results, error) in
+            if let error = error {
+                print(error)
+            } else {
+                guard let JSONresponse = results else { return }
+                print(JSONresponse)
+                print("Account: ")
+                print(JSONresponse[Constants.JSONResponseKeys.Account]![Constants.JSONResponseKeys.Key]!!)
+                print("Session:")
+                print(JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID]!!)
+//                Networking.sharedInstance().userID = results?[Constants.JSONResponseKeys.Account]?[Constants.JSONResponseKeys.Key] as? Int
+//                results!.
+//                Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]?[Constants.JSONResponseKeys.UserID] as? String
+//                print(Networking.sharedInstance().userID!)
+//                print(Networking.sharedInstance().sessionID!)
+            }
+            print("\n\n\n")
+        }
     }
     
     @IBAction func loginAction() {
@@ -41,10 +62,23 @@ class CredentialsController: UIViewController {
     
     func performLogin() {
         view.endEditing(true)
-        UserDefaults.standard.set(true, forKey: Constants.APPConfiguration.LoggedIn)
-        performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
-        passwordTextField.text = ""
-        emailTextField.text = ""
+        
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.waitinTopConstraint.constant = 0
+//        })
+//        if success
+//        UserDefaults.standard.set(true, forKey: Constants.APPConfiguration.LoggedIn)
+//        performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
+//        passwordTextField.text = ""
+//        emailTextField.text = ""
+//        else
+//        present(getErrorAlert(), animated: true)
+    }
+    
+    func getErrorAlert() -> UIAlertController {
+        let errorAlert = UIAlertController(title: "Oops!", message: "These credentials don't look right. Make sure you entered the corrects ones and try again please.", preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+        return errorAlert
     }
     
     //# Keyboard events and handling

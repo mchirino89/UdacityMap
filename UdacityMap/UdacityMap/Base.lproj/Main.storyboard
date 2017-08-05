@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EiM-bl-TAK">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,7 +17,7 @@
         <scene sceneID="Qvg-TD-9OC">
             <objects>
                 <navigationController storyboardIdentifier="navigationView" navigationBarHidden="YES" id="EiM-bl-TAK" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fas-9v-Wj5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fas-9v-Wj5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -152,15 +152,45 @@
                                     <constraint firstItem="p2B-ZV-ljU" firstAttribute="centerX" secondItem="hkU-iB-7sk" secondAttribute="centerX" multiplier="0.5" id="ydi-O1-Ui1"/>
                                 </constraints>
                             </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-KG-zdY">
+                                <rect key="frame" x="0.0" y="1000" width="414" height="736"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pAi-1h-pLl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-oC-Cv0">
+                                            <rect key="frame" x="189" y="350" width="37" height="37"/>
+                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loggin in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqi-Oa-eDH">
+                                            <rect key="frame" x="162" y="403" width="90.333333333333343" height="27.333333333333258"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerX" secondItem="pAi-1h-pLl" secondAttribute="centerX" id="GvG-mP-n0R"/>
+                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="top" secondItem="fuM-oC-Cv0" secondAttribute="bottom" constant="16" id="J2I-pX-fAx"/>
+                                        <constraint firstItem="Sqi-Oa-eDH" firstAttribute="centerX" secondItem="fuM-oC-Cv0" secondAttribute="centerX" id="SZ5-t3-SJ4"/>
+                                        <constraint firstItem="fuM-oC-Cv0" firstAttribute="centerY" secondItem="pAi-1h-pLl" secondAttribute="centerY" id="UbI-Oh-38s"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="9o9-KG-zdY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="7Pf-fb-NmV"/>
                             <constraint firstItem="hkU-iB-7sk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.25" id="9fz-zV-U6Z"/>
                             <constraint firstItem="2UO-gl-xOa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="COa-JK-Qjg"/>
                             <constraint firstItem="2UO-gl-xOa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="CPZ-hB-Gbs"/>
                             <constraint firstItem="hkU-iB-7sk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IqG-G3-jCJ"/>
+                            <constraint firstItem="9o9-KG-zdY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Lnd-RG-wi6"/>
                             <constraint firstItem="Xm6-nB-q1O" firstAttribute="top" secondItem="2UO-gl-xOa" secondAttribute="bottom" constant="25" id="OPn-92-Rgj"/>
                             <constraint firstItem="Xm6-nB-q1O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P13-8S-2JC"/>
+                            <constraint firstItem="9o9-KG-zdY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="1000" id="XzY-6z-PbE"/>
+                            <constraint firstItem="9o9-KG-zdY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="s2M-sS-2oG"/>
                             <constraint firstItem="2UO-gl-xOa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="skR-b3-N69"/>
                             <constraint firstItem="hkU-iB-7sk" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="sxA-Y8-9N0"/>
                             <constraint firstItem="hkU-iB-7sk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.92" id="ypq-da-5Kh"/>
@@ -171,6 +201,8 @@
                         <outlet property="emailTextField" destination="zl1-3I-2cm" id="dJL-vY-1N2"/>
                         <outlet property="loginButton" destination="p2B-ZV-ljU" id="6zf-mf-OhD"/>
                         <outlet property="passwordTextField" destination="l87-Mh-Yxm" id="S0Y-3X-oMJ"/>
+                        <outlet property="waitinTopConstraint" destination="XzY-6z-PbE" id="OIg-1P-lXF"/>
+                        <outlet property="waitingVisualEffect" destination="9o9-KG-zdY" id="Npf-YB-UvR"/>
                         <segue destination="4jq-cE-rQ7" kind="show" identifier="loggedSegue" id="Vq4-Tw-eJG"/>
                     </connections>
                 </viewController>

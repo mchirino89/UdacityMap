@@ -100,8 +100,8 @@
 		22B0B8F71F2E03A3002A8D35 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				229505841F23BB2E007BD763 /* Main.storyboard */,
 				229505891F23BB2E007BD763 /* LaunchScreen.storyboard */,
+				229505841F23BB2E007BD763 /* Main.storyboard */,
 				229505871F23BB2E007BD763 /* Assets.xcassets */,
 				22B0B8F51F2E0031002A8D35 /* StudentCell.swift */,
 				22DE2FCC1F2C1C8E00F76A58 /* ButtonStyle.swift */,
