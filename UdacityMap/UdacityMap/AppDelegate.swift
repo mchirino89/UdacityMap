@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootView = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.navigationView)
         
         // If previosly logged, then skip login view
-        if UserDefaults.standard.value(forKey: Constants.APPConfiguration.LoggedIn) != nil {
+        if UserDefaults.standard.value(forKey: Constants.Session.Id) != nil {
+            Networking.sharedInstance().sessionID = UserDefaults.standard.value(forKey: Constants.Session.Id) as? String
+            Networking.sharedInstance().userID = UserDefaults.standard.value(forKey: Constants.Session.AccountKey) as? Int
             let tabView = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.tabView)
             (rootView as! UINavigationController).pushViewController(tabView, animated: false)
         }

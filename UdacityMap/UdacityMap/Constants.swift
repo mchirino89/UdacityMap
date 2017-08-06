@@ -21,8 +21,9 @@ class Constants {
         
     }
     
-    struct APPConfiguration {
-        static let LoggedIn = "loggedIn"
+    struct Session {
+        static let Id = "session"
+        static let AccountKey = "key"
     }
     
     struct Storyboard {
@@ -42,28 +43,6 @@ class Constants {
     
     struct Path {
         static let SignIn = "/api/session"
-    }
-    
-    // MARK: Methods
-    struct Methods {
-        
-        // MARK: Account
-        static let Account = "/account"
-        static let AccountIDFavoriteMovies = "/account/{id}/favorite/movies"
-        static let AccountIDFavorite = "/account/{id}/favorite"
-        static let AccountIDWatchlistMovies = "/account/{id}/watchlist/movies"
-        static let AccountIDWatchlist = "/account/{id}/watchlist"
-        
-        // MARK: Authentication
-        static let AuthenticationTokenNew = "/authentication/token/new"
-        static let AuthenticationSessionNew = "/authentication/session/new"
-        
-        // MARK: Search
-        static let SearchMovie = "/search/movie"
-        
-        // MARK: Config
-        static let Config = "/configuration"
-        
     }
     
     // MARK: URL Keys
@@ -110,7 +89,8 @@ class Constants {
 func logOutUser(navigationController: UINavigationController?) {
     let questionAlert = UIAlertController(title: "Log out", message: "Are you sure you want to log out now?", preferredStyle: .actionSheet)
     let logOutAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-        UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
+        UserDefaults.standard.removeObject(forKey: Constants.Session.Id)
+        UserDefaults.standard.removeObject(forKey: Constants.Session.AccountKey)
         let _ = Networking.sharedInstance().taskForDELETEMethod(path: Constants.Path.SignIn) {
             (results, error) in
             if let error = error {
@@ -126,6 +106,7 @@ func logOutUser(navigationController: UINavigationController?) {
     navigationController?.present(questionAlert, animated: true)
 }
 
+// MARK: Sets custom navigation title
 func getCustomTitle() -> UILabel {
     let titleLabel = UILabel()
     titleLabel.text = "On the map"
