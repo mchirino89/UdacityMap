@@ -68,9 +68,8 @@ class CredentialsController: UIViewController {
                     guard let JSONresponse = results else { return }
                     print(JSONresponse)
                     Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID] as? String
-                    print(Networking.sharedInstance().sessionID!)
                     UserDefaults.standard.set(true, forKey: Constants.APPConfiguration.LoggedIn)
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
                         self.passwordTextField.text = ""
                         self.emailTextField.text = ""

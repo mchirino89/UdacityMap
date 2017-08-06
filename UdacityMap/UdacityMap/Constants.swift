@@ -20,6 +20,7 @@ class Constants {
         static let ApiScheme = "https"
         
     }
+    
     struct APPConfiguration {
         static let LoggedIn = "loggedIn"
     }
@@ -35,7 +36,7 @@ class Constants {
     // MARK: URLs
     struct URL {
         static let SignUp = "https://www.udacity.com/account/auth#!/signup"
-        static let Udacity = "udacity.com"
+        static let Udacity = "www.udacity.com"
         static let Parse = "parse.udacity.com/parse/classes"
     }
     
@@ -107,8 +108,22 @@ class Constants {
 }
 
 func logOutUser(navigationController: UINavigationController?) {
-    UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
-    navigationController?.popToRootViewController(animated: true)
+    let questionAlert = UIAlertController(title: "Log out", message: "Are you sure you want to log out now?", preferredStyle: .actionSheet)
+    let logOutAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+        UserDefaults.standard.removeObject(forKey: Constants.APPConfiguration.LoggedIn)
+        let _ = Networking.sharedInstance().taskForDELETEMethod(path: Constants.Path.SignIn) {
+            (results, error) in
+            if let error = error {
+                print(error)
+            } else {
+                print(results!)
+            }
+        }
+        navigationController?.popToRootViewController(animated: true)
+    }
+    questionAlert.addAction(logOutAction)
+    questionAlert.addAction(UIAlertAction(title: "No", style: .default))
+    navigationController?.present(questionAlert, animated: true)
 }
 
 func getCustomTitle() -> UILabel {
