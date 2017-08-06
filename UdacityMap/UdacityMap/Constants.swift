@@ -43,6 +43,7 @@ class Constants {
     
     struct Path {
         static let SignIn = "/api/session"
+        static let Students = "/StudentLocation"
     }
     
     // MARK: URL Keys

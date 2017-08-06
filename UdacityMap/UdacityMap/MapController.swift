@@ -19,6 +19,21 @@ class MapController: UIViewController {
         super.viewDidLoad()
         viewNavigationItem.titleView = getCustomTitle()
 //        performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            let _ = Networking.sharedInstance().taskForGETMethod(URLExtension: "limit=100", host: false, path: Constants.Path.Students, parameters: ["X-Parse-Application-Id": Constants.APIConfiguration.AppId as AnyObject, "X-Parse-REST-API-Key": Constants.APIConfiguration.ApiKey as AnyObject], jsonBody: "") { (results, error) in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async{
+                        
+                    }
+                } else {
+                    DispatchQueue.main.async{
+                        print(results!)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func logoutAction(_ sender: Any) {
