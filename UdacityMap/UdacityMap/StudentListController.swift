@@ -12,10 +12,12 @@ class StudentListController: UIViewController {
 
     @IBOutlet weak var studentListTableView: UITableView!
     @IBOutlet weak var viewNavigationItem: UINavigationItem!
+    @IBOutlet weak var waitingVisualEffect: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewNavigationItem.titleView = getCustomTitle()
+        setWaitingView(isOn: true, waitingVisualEffect: waitingVisualEffect, view: view)
     }
     
     @IBAction func logoutAction(_ sender: Any) {

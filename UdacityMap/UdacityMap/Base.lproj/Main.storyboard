@@ -245,6 +245,30 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ue-xW-b7r">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dvF-zH-iuW">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dBR-jA-hU3">
+                                            <rect key="frame" x="188.66666666666666" y="248.66666666666669" width="37" height="37"/>
+                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading students' list" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umm-Yp-hvM">
+                                            <rect key="frame" x="99.333333333333314" y="301.33333333333331" width="216" height="27.333333333333371"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="umm-Yp-hvM" firstAttribute="centerX" secondItem="dBR-jA-hU3" secondAttribute="centerX" id="2vP-p5-Y4q"/>
+                                        <constraint firstItem="umm-Yp-hvM" firstAttribute="top" secondItem="dBR-jA-hU3" secondAttribute="bottom" constant="16" id="PxV-bK-aku"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yHx-v7-Ttx">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,8 +317,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8ue-xW-b7r" firstAttribute="width" secondItem="4d7-pN-BvQ" secondAttribute="width" id="4jZ-4E-2iX"/>
                             <constraint firstItem="yHx-v7-Ttx" firstAttribute="top" secondItem="jzj-rh-LKM" secondAttribute="bottom" id="LIb-vc-FVW"/>
+                            <constraint firstItem="dBR-jA-hU3" firstAttribute="centerX" secondItem="4d7-pN-BvQ" secondAttribute="centerX" id="QJ8-n3-khe"/>
+                            <constraint firstItem="8ue-xW-b7r" firstAttribute="centerX" secondItem="4d7-pN-BvQ" secondAttribute="centerX" id="QsN-YE-r5w"/>
+                            <constraint firstItem="8ue-xW-b7r" firstAttribute="top" secondItem="jzj-rh-LKM" secondAttribute="bottom" id="SDT-1S-otQ"/>
+                            <constraint firstItem="dBR-jA-hU3" firstAttribute="centerY" secondItem="4d7-pN-BvQ" secondAttribute="centerY" multiplier="0.9" id="UKq-d8-D9e"/>
                             <constraint firstItem="jzj-rh-LKM" firstAttribute="leading" secondItem="4d7-pN-BvQ" secondAttribute="leading" id="hYH-hH-QN7"/>
+                            <constraint firstItem="Kiy-Bb-BAv" firstAttribute="top" secondItem="8ue-xW-b7r" secondAttribute="bottom" id="ofh-Qa-Fa2"/>
                             <constraint firstItem="yHx-v7-Ttx" firstAttribute="leading" secondItem="4d7-pN-BvQ" secondAttribute="leading" id="qvC-dv-rC7"/>
                             <constraint firstAttribute="trailing" secondItem="yHx-v7-Ttx" secondAttribute="trailing" id="s0o-Xl-adl"/>
                             <constraint firstItem="jzj-rh-LKM" firstAttribute="top" secondItem="beq-WB-70z" secondAttribute="bottom" id="wA3-Hp-kHy"/>
@@ -306,6 +336,7 @@
                     <connections>
                         <outlet property="studentListTableView" destination="yHx-v7-Ttx" id="MqV-tk-OHD"/>
                         <outlet property="viewNavigationItem" destination="Kct-Wc-x3D" id="9YN-o4-hj1"/>
+                        <outlet property="waitingVisualEffect" destination="8ue-xW-b7r" id="Vt0-il-Pmz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpR-gy-7Do" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -622,7 +653,7 @@
                                             <rect key="frame" x="188.66666666666666" y="248.66666666666669" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading student's pins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-Kr-Oh1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading students' pins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-Kr-Oh1">
                                             <rect key="frame" x="95.333333333333343" y="301.33333333333331" width="223.66666666666666" height="27.333333333333371"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                             <nil key="textColor"/>
@@ -636,7 +667,7 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-Ut-ZQa">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-Ut-ZQa">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <connections>
                                     <outlet property="delegate" destination="xlG-jK-E2p" id="b3S-zI-HoV"/>
