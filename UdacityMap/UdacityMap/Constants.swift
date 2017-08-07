@@ -10,15 +10,11 @@ import UIKit
 
 class Constants {
 
-    // MARK: Constants
     struct APIConfiguration {
-        
+        static let ApiScheme = "https"
         // MARK: API Key
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         static let AppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-        
-        static let ApiScheme = "https"
-        
     }
     
     struct Session {
@@ -38,46 +34,33 @@ class Constants {
     struct URL {
         static let SignUp = "https://www.udacity.com/account/auth#!/signup"
         static let Udacity = "www.udacity.com"
-        static let Parse = "parse.udacity.com/parse/classes"
+        static let Parse = "parse.udacity.com"
     }
     
     struct Path {
         static let SignIn = "/api/session"
-        static let Students = "/StudentLocation"
-    }
-    
-    // MARK: URL Keys
-    struct URLKeys {
-        static let UserID = "id"
+        static let Students = "/parse/classes/StudentLocation"
     }
     
     // MARK: Parameter Keys
     struct ParameterKeys {
-        static let ApiKey = "api_key"
-        static let SessionID = "session_id"
-        static let RequestToken = "request_token"
-        static let Query = "query"
+        static let AppId = "X-Parse-Application-Id"
+        static let ApiKey = "X-Parse-REST-API-Key"
+    }
+    
+    struct HTTPHeaderField {
+        static let content = "Content-Type"
+        static let acceptance = "Accept"
+        static let Token = "X-XSRF-TOKEN"
     }
     
     // MARK: JSON Body Keys
     struct JSONBodyKeys {
-        static let MediaType = "media_type"
-        static let MediaID = "media_id"
-        static let Favorite = "favorite"
-        static let Watchlist = "watchlist"
+        static let appJSON = "application/json"
     }
     
     // MARK: JSON Response Keys
     struct JSONResponseKeys {
-        
-        // MARK: General
-        static let StatusMessage = "status_message"
-        static let StatusCode = "status_code"
-        
-        // MARK: Authorization
-        static let RequestToken = "request_token"
-        static let SessionID = "session_id"
-        
         static let Session = "session"
         
         // MARK: Account
@@ -85,14 +68,33 @@ class Constants {
         static let Account = "account"
         static let Key = "key"
     }
+    
+    struct ErrorMessages {
+        static let credentials = "These credentials don't look right. Make sure you entered the corrects ones and try again please."
+        static let studentLocation = "Something went wrong loading the students' pins"
+        static let parsingJSON = "Could not parse the data as JSON: "
+        static let noData = "No data was returned by the request!"
+        static let noSuccess = "Your request returned a status code other than 2xx!"
+        static let generic = "There was an error with your request: "
+        static let popupTitle = "Oops!"
+        static let popupButton = "Ok"
+    }
+    
+    struct UIMessages {
+        static let affirmative = "Yes"
+        static let negative = "No"
+        static let logout = "Log out"
+        static let logoutQuestion = "Are you sure you want to log out now?"
+        static let appTitle = "On the map"
+    }
 }
 
 func logOutUser(navigationController: UINavigationController?) {
-    let questionAlert = UIAlertController(title: "Log out", message: "Are you sure you want to log out now?", preferredStyle: .actionSheet)
-    let logOutAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+    let questionAlert = UIAlertController(title: Constants.UIMessages.logout, message: Constants.UIMessages.logoutQuestion, preferredStyle: .actionSheet)
+    let logOutAction = UIAlertAction(title: Constants.UIMessages.affirmative, style: .destructive) { _ in
         UserDefaults.standard.removeObject(forKey: Constants.Session.Id)
         UserDefaults.standard.removeObject(forKey: Constants.Session.AccountKey)
-        let _ = Networking.sharedInstance().taskForDELETEMethod(path: Constants.Path.SignIn) {
+        Networking.sharedInstance().taskForDELETEMethod(path: Constants.Path.SignIn) {
             (results, error) in
             if let error = error {
                 print(error)
@@ -103,15 +105,28 @@ func logOutUser(navigationController: UINavigationController?) {
         navigationController?.popToRootViewController(animated: true)
     }
     questionAlert.addAction(logOutAction)
-    questionAlert.addAction(UIAlertAction(title: "No", style: .default))
+    questionAlert.addAction(UIAlertAction(title: Constants.UIMessages.negative, style: .default))
     navigationController?.present(questionAlert, animated: true)
 }
 
 // MARK: Sets custom navigation title
 func getCustomTitle() -> UILabel {
     let titleLabel = UILabel()
-    titleLabel.text = "On the map"
+    titleLabel.text = Constants.UIMessages.appTitle
     titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 20)
     titleLabel.sizeToFit()
     return titleLabel
+}
+
+func setWaitingView(isOn: Bool, waitingVisualEffect: UIVisualEffectView, view: UIView) {
+    UIView.animate(withDuration: 0.3, animations: {
+        isOn ? view.bringSubview(toFront: waitingVisualEffect) : view.sendSubview(toBack: waitingVisualEffect)
+        waitingVisualEffect.alpha = isOn ? 1 : 0
+    })
+}
+
+func getErrorAlert(errorMessage: String) -> UIAlertController {
+    let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
+    errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
+    return errorAlert
 }

@@ -14,7 +14,6 @@ class CredentialsController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var loginButton: ButtonStyle!
     @IBOutlet weak var waitingVisualEffect: UIVisualEffectView!
-    @IBOutlet weak var waitinTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,34 +39,27 @@ class CredentialsController: UIViewController {
         loginButton.isEnabled = !passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
-    private func setWaitinView(isOn: Bool) {
-        isOn ? view.bringSubview(toFront: waitingVisualEffect) : view.sendSubview(toBack: waitingVisualEffect)
-        waitingVisualEffect.alpha = isOn ? 1 : 0
-    }
-    
     func performLogin() {
         view.endEditing(true)
-        UIView.animate(withDuration: 0.3, animations: {
-            self.setWaitinView(isOn: true)
-        })
-        
+        setWaitingView(isOn: true, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             // Quick question: Is this the proper form to prevent a retain cycle in here?
             [unowned self] in
-            let _ = Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}") {
+            let jsonPayload = "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}"
+            Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
                 (results, error) in
                 if let error = error {
                     print(error)
                     DispatchQueue.main.async{
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.setWaitinView(isOn: false)
-                        })
-                        self.present(self.getErrorAlert(), animated: true)
+                        setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
+                        self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.credentials), animated: true)
                     }
                 } else {
                     guard let JSONresponse = results else { return }
                     print(JSONresponse)
+                    // What's the difference between casting as! 👇🏽
                     Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID] as? String
+                    // And casting as? 👇🏽?
                     Networking.sharedInstance().userID = Int(JSONresponse[Constants.JSONResponseKeys.Account]![Constants.JSONResponseKeys.Key] as! String)
                     UserDefaults.standard.set(Networking.sharedInstance().userID!, forKey: Constants.Session.AccountKey)
                     UserDefaults.standard.set(Networking.sharedInstance().sessionID!, forKey: Constants.Session.Id)
@@ -75,17 +67,11 @@ class CredentialsController: UIViewController {
                         self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
                         self.passwordTextField.text = ""
                         self.emailTextField.text = ""
-                        self.setWaitinView(isOn: false)
+                        setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
                     }
                 }
             }
         }
-    }
-    
-    func getErrorAlert() -> UIAlertController {
-        let errorAlert = UIAlertController(title: "Oops!", message: "These credentials don't look right. Make sure you entered the corrects ones and try again please.", preferredStyle: .alert)
-        errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
-        return errorAlert
     }
     
     //# Keyboard events and handling
