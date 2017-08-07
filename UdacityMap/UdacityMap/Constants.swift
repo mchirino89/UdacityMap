@@ -9,7 +9,7 @@
 import UIKit
 
 class Constants {
-
+    
     struct APIConfiguration {
         static let ApiScheme = "https"
         static let URLScheme = "http"
@@ -38,6 +38,7 @@ class Constants {
         static let Parse = "parse.udacity.com"
     }
     
+    // MARK: API routes
     struct Path {
         static let SignIn = "/api/session"
         static let Students = "/parse/classes/StudentLocation"
@@ -49,6 +50,7 @@ class Constants {
         static let ApiKey = "X-Parse-REST-API-Key"
     }
     
+    // MARK: Http header values
     struct HTTPHeaderField {
         static let content = "Content-Type"
         static let acceptance = "Accept"
@@ -86,6 +88,8 @@ class Constants {
     struct UIElements {
         static let mapPin = "pin"
         static let customTitleFont = "MarkerFelt-Thin"
+        static let noNameProvidedFont = "HelveticaNeue-Italic"
+        static let nameProvidedFont = "HelveticaNeue"
     }
     
     struct ErrorMessages {
@@ -106,6 +110,14 @@ class Constants {
         static let logoutQuestion = "Are you sure you want to log out now?"
         static let appTitle = "On the map"
     }
+    
+    struct Utilities {
+        static let updateNotification = "com.3codegeeks.UdacityMap.updateNotification"
+    }
+}
+
+func refreshStudentList() {
+    
 }
 
 func logOutUser(navigationController: UINavigationController?) {
@@ -128,7 +140,6 @@ func logOutUser(navigationController: UINavigationController?) {
     navigationController?.present(questionAlert, animated: true)
 }
 
-// MARK: Sets custom navigation title
 func getCustomTitle() -> UILabel {
     let titleLabel = UILabel()
     titleLabel.text = Constants.UIMessages.appTitle
@@ -144,6 +155,14 @@ func setWaitingView(isOn: Bool, waitingVisualEffect: UIVisualEffectView, view: U
     })
 }
 
+func removeWaitingView(waitingVisualEffect: UIVisualEffectView, view: UIView) {
+    UIView.animate(withDuration: 0.3, animations: {
+        waitingVisualEffect.alpha = 0
+    }, completion: { _ in
+        view.sendSubview(toBack: waitingVisualEffect)
+    })
+}
+
 func getErrorAlert(errorMessage: String) -> UIAlertController {
     let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
     errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
@@ -153,7 +172,7 @@ func getErrorAlert(errorMessage: String) -> UIAlertController {
 func launchSafari(studentsURL: String?, studentsFullName: String, navigationController: UINavigationController?) {
     let app = UIApplication.shared
     if let toOpen = studentsURL, (studentsURL!.hasPrefix(Constants.APIConfiguration.ApiScheme) || studentsURL!.hasPrefix(Constants.APIConfiguration.URLScheme)) {
-        if app.canOpenURL(URL(string: toOpen)!) {
+        if app.canOpenURL(URL(string: toOpen)!) && toOpen.characters.count > 8 {
             app.open(URL(string: toOpen)!, options: [:], completionHandler: { (success) in
                 print("\(success) for URL \(toOpen)")
             })

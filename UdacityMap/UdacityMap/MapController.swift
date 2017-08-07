@@ -18,19 +18,25 @@ class MapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewNavigationItem.titleView = getCustomTitle()
-//        performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
-        setWaitingView(isOn: true, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
+        NotificationCenter.default.addObserver(forName: updateStudentNotification, object: nil, queue: nil, using: studentUpdate)
+        updateStudents()
+        // performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
+    }
+    
+    func updateStudents() {
+        NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": true])
+        mapView.removeAnnotations(mapView.annotations)
         DispatchQueue.global(qos: .userInteractive).async {
             Networking.sharedInstance().taskForGETMethod(URLExtension: "", host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject], jsonBody: "") {
                 (results, error) in
                 if let error = error {
                     print(error)
-                    DispatchQueue.main.async{
-                        setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": false])
                         self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.studentLocation), animated: true)
                     }
                 } else {
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
                         let _ = jsonResultArray.map{ studentsList.append(Student(dictionary: $0)) }
                         var annotations = [MKPointAnnotation]()
@@ -41,18 +47,22 @@ class MapController: UIViewController {
                             annotation.subtitle = item.mediaURL
                             annotations.append(annotation)
                             // What's the difference between adding annotantios directly into the map here 👇🏽
-//                            self.mapView.addAnnotation(annotation)
+                            // self.mapView.addAnnotation(annotation)
                         }
                         // And adding them like this? 👇🏽
                         self.mapView.addAnnotations(annotations)
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.waitingVisualEffect.alpha = 0
-                        }, completion: { _ in
-                            self.view.sendSubview(toBack: self.waitingVisualEffect)
-                        })
+                        NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": false])
                     }
                 }
             }
+        }
+    }
+    
+    func studentUpdate(notification: Notification) -> Void {
+        if let userInfo = notification.userInfo, let isWaitingOn = userInfo["isWaitingOn"] as? Bool {
+            isWaitingOn ? setWaitingView(isOn: true, waitingVisualEffect: waitingVisualEffect, view: view) : removeWaitingView(waitingVisualEffect: waitingVisualEffect, view: view)
+        } else {
+            updateStudents()
         }
     }
     
@@ -61,6 +71,7 @@ class MapController: UIViewController {
     }
     
     @IBAction func refreshAction(_ sender: Any) {
+        NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: nil)
     }
 }
 
