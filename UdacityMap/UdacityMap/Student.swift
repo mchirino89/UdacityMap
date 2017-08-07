@@ -9,27 +9,47 @@
 import Foundation
 
 struct Student {
-    let objectId: String
-    let uniqueKey: Int
-    let firstName: String
-    let lastName: String
-    let mapString: String
-    let mediaURL: String
-    let latitude: Double
-    let longitude: Double
-    let updatedAt: String
-    let ACL: String
+    var objectId: String = ""
+    var uniqueKey: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    var mapString: String = ""
+    var mediaURL: String = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var updatedAt: String = ""
+    var createdAt: String = ""
     
     init(dictionary: [String:AnyObject]) {
-        objectId = ""
-        uniqueKey = 0
-        firstName = ""
-        lastName = ""
-        mapString = ""
-        mediaURL = ""
-        latitude = 0.0
-        longitude = 0.0
-        updatedAt = ""
-        ACL = ""
+        if let object = dictionary[Constants.JSONResponseKeys.object] as? String {
+            objectId = object
+        }
+        if let key = dictionary[Constants.JSONResponseKeys.id] as? String {
+            uniqueKey = key
+        }
+        if let name = dictionary[Constants.JSONResponseKeys.name] as? String {
+            firstName = name
+        }
+        if let last = dictionary[Constants.JSONResponseKeys.lastName] as? String {
+            lastName = last
+        }
+        if let info = dictionary[Constants.JSONResponseKeys.info] as? String {
+            mapString = info
+        }
+        if let url = dictionary[Constants.JSONResponseKeys.url] as? String {
+            mediaURL = url
+        }
+        if let lat = dictionary[Constants.JSONResponseKeys.latitude] as? Double {
+            latitude = lat
+        }
+        if let lon = dictionary[Constants.JSONResponseKeys.longitude] as? Double {
+            longitude = lon
+        }
+        if let updated = dictionary[Constants.JSONResponseKeys.update] as? String {
+            updatedAt = updated
+        }
+        if let created = dictionary[Constants.JSONResponseKeys.creation] as? String {
+            createdAt = created
+        }
     }
 }

@@ -67,6 +67,23 @@ class Constants {
         static let UserID = "id"
         static let Account = "account"
         static let Key = "key"
+        
+        // MARK: Studens
+        static let results = "results"
+        static let object = "objectId"
+        static let id = "uniqueKey"
+        static let name = "firstName"
+        static let lastName = "lastName"
+        static let info = "mapString"
+        static let url = "mediaURL"
+        static let latitude = "latitude"
+        static let longitude = "longitude"
+        static let update = "updatedAt"
+        static let creation = "createdAt"
+    }
+    
+    struct UIElements {
+        static let mapPin = "pin"
     }
     
     struct ErrorMessages {
