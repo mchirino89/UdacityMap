@@ -12,6 +12,7 @@ class Constants {
 
     struct APIConfiguration {
         static let ApiScheme = "https"
+        static let URLScheme = "http"
         // MARK: API Key
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         static let AppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
@@ -84,6 +85,7 @@ class Constants {
     
     struct UIElements {
         static let mapPin = "pin"
+        static let customTitleFont = "MarkerFelt-Thin"
     }
     
     struct ErrorMessages {
@@ -130,7 +132,7 @@ func logOutUser(navigationController: UINavigationController?) {
 func getCustomTitle() -> UILabel {
     let titleLabel = UILabel()
     titleLabel.text = Constants.UIMessages.appTitle
-    titleLabel.font = UIFont(name: "MarkerFelt-Thin", size: 20)
+    titleLabel.font = UIFont(name: Constants.UIElements.customTitleFont, size: 20)
     titleLabel.sizeToFit()
     return titleLabel
 }
@@ -146,4 +148,19 @@ func getErrorAlert(errorMessage: String) -> UIAlertController {
     let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
     errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
     return errorAlert
+}
+
+func launchSafari(studentsURL: String?, studentsFullName: String, navigationController: UINavigationController?) {
+    let app = UIApplication.shared
+    if let toOpen = studentsURL, (studentsURL!.hasPrefix(Constants.APIConfiguration.ApiScheme) || studentsURL!.hasPrefix(Constants.APIConfiguration.URLScheme)) {
+        if app.canOpenURL(URL(string: toOpen)!) {
+            app.open(URL(string: toOpen)!, options: [:], completionHandler: { (success) in
+                print("\(success) for URL \(toOpen)")
+            })
+        } else {
+            navigationController?.present(getErrorAlert(errorMessage: "\(studentsFullName) provided a missformatted URL"), animated: true)
+        }
+    } else {
+        navigationController?.present(getErrorAlert(errorMessage: "\(studentsFullName) provided a missformatted URL"), animated: true)
+    }
 }

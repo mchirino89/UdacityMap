@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EiM-bl-TAK">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -619,27 +619,21 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Po0-he-Z57">
-                                            <rect key="frame" x="188.66666666666666" y="293.33333333333331" width="37" height="37"/>
+                                            <rect key="frame" x="188.66666666666666" y="248.66666666666669" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading student's pins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-Kr-Oh1">
-                                            <rect key="frame" x="95.333333333333343" y="346" width="223.66666666666666" height="27.333333333333314"/>
+                                            <rect key="frame" x="95.333333333333343" y="301.33333333333331" width="223.66666666666666" height="27.333333333333371"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Po0-he-Z57" firstAttribute="centerY" secondItem="sXF-CP-Z2P" secondAttribute="centerY" id="O5d-eJ-QWz"/>
-                                        <constraint firstItem="Po0-he-Z57" firstAttribute="centerX" secondItem="sXF-CP-Z2P" secondAttribute="centerX" id="XZf-1A-nfn"/>
                                         <constraint firstItem="KOa-Kr-Oh1" firstAttribute="top" secondItem="Po0-he-Z57" secondAttribute="bottom" constant="16" id="gep-jY-TUA"/>
                                         <constraint firstItem="KOa-Kr-Oh1" firstAttribute="centerX" secondItem="Po0-he-Z57" secondAttribute="centerX" id="r3g-tt-eFQ"/>
                                     </constraints>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="Po0-he-Z57" firstAttribute="centerX" secondItem="ldS-ag-pg5" secondAttribute="centerX" id="IX1-jp-Scv"/>
-                                    <constraint firstItem="Po0-he-Z57" firstAttribute="centerY" secondItem="ldS-ag-pg5" secondAttribute="centerY" id="YX4-St-5lg"/>
-                                </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrb-Ut-ZQa">
@@ -653,6 +647,7 @@
                         <constraints>
                             <constraint firstItem="yy0-WQ-PZ5" firstAttribute="leading" secondItem="QUE-rw-vAQ" secondAttribute="leading" id="IZp-Eo-Rxi"/>
                             <constraint firstItem="ECV-fP-6Ja" firstAttribute="top" secondItem="vrb-Ut-ZQa" secondAttribute="bottom" id="MgV-nQ-lBo"/>
+                            <constraint firstItem="Po0-he-Z57" firstAttribute="centerX" secondItem="QUE-rw-vAQ" secondAttribute="centerX" id="NN3-45-Zxl"/>
                             <constraint firstItem="ldS-ag-pg5" firstAttribute="bottom" secondItem="vrb-Ut-ZQa" secondAttribute="bottom" id="Nb7-cD-qKK"/>
                             <constraint firstItem="ldS-ag-pg5" firstAttribute="width" secondItem="QUE-rw-vAQ" secondAttribute="width" id="XVD-Z3-BFv"/>
                             <constraint firstItem="vrb-Ut-ZQa" firstAttribute="top" secondItem="yy0-WQ-PZ5" secondAttribute="bottom" id="Z0s-aw-7Gs"/>
@@ -662,6 +657,7 @@
                             <constraint firstItem="yy0-WQ-PZ5" firstAttribute="top" secondItem="B6f-02-ic4" secondAttribute="bottom" id="hjz-QV-Qvi"/>
                             <constraint firstItem="vrb-Ut-ZQa" firstAttribute="centerX" secondItem="QUE-rw-vAQ" secondAttribute="centerX" id="sFf-4y-y5f"/>
                             <constraint firstItem="vrb-Ut-ZQa" firstAttribute="width" secondItem="QUE-rw-vAQ" secondAttribute="width" id="sPX-nb-cme"/>
+                            <constraint firstItem="Po0-he-Z57" firstAttribute="centerY" secondItem="QUE-rw-vAQ" secondAttribute="centerY" multiplier="0.9" id="x5n-Ae-fuy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="mapView" selectedImage="mapViewSelected" id="Fhx-bd-Rba"/>

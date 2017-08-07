@@ -26,8 +26,6 @@ class Networking: NSObject {
     
     func taskForGETMethod(URLExtension: String, host: Bool, path: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForGET: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
-        
-        
         /* 2/3. Build the URL, Configure the request */
         
         let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters, withPathExtension: URLExtension))
@@ -156,6 +154,7 @@ class Networking: NSObject {
     
     // MARK: Network logic for Http request
     private func networkLogic(logicHandler: @escaping (Data?, URLResponse?, Error?) -> Void, udacityAPI: Bool, completionHandlerForRequest: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
+        // I wanted to move the logic from http request into here but i didn't find a way to execute the closeru 'logicHandler' within this method. Could you please tell me how to do it?
 //        logicHandler() {
 //            (data, response, error) in
 //        }

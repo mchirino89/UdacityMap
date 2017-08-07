@@ -32,13 +32,12 @@ class MapController: UIViewController {
                 } else {
                     DispatchQueue.main.async{
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
-                        var studentsList:[Student] = []
                         let _ = jsonResultArray.map{ studentsList.append(Student(dictionary: $0)) }
                         var annotations = [MKPointAnnotation]()
                         for item in studentsList {
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
-                            annotation.title = "\(item.firstName) \(item.lastName)"
+                            annotation.title = "\(item.fullName)"
                             annotation.subtitle = item.mediaURL
                             annotations.append(annotation)
                             // What's the difference between adding annotantios directly into the map here 👇🏽
@@ -75,22 +74,15 @@ extension MapController: MKMapViewDelegate {
             pinView!.canShowCallout = true
             pinView!.pinTintColor = .red
             pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        else {
+        } else {
             pinView!.annotation = annotation
         }
-        
         return pinView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
-                app.open(URL(string: toOpen)!, options: [:], completionHandler: { (success) in
-                    print("\(success) for URL \(toOpen)")
-                })
-            }
+            launchSafari(studentsURL: view.annotation!.subtitle!, studentsFullName: view.annotation!.title!!, navigationController: navigationController)
         }
     }
 }

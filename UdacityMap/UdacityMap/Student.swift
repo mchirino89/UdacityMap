@@ -8,11 +8,13 @@
 
 import Foundation
 
+// Is this the right place to put the students array? 
+var studentsList:[Student] = []
+
 struct Student {
     var objectId: String = ""
     var uniqueKey: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
+    var fullName: String = ""
     var mapString: String = ""
     var mediaURL: String = ""
     var latitude: Double = 0.0
@@ -21,6 +23,8 @@ struct Student {
     var createdAt: String = ""
     
     init(dictionary: [String:AnyObject]) {
+        var firstName: String = ""
+        var lastName: String = ""
         if let object = dictionary[Constants.JSONResponseKeys.object] as? String {
             objectId = object
         }
@@ -33,6 +37,7 @@ struct Student {
         if let last = dictionary[Constants.JSONResponseKeys.lastName] as? String {
             lastName = last
         }
+        fullName = firstName + " " + lastName
         if let info = dictionary[Constants.JSONResponseKeys.info] as? String {
             mapString = info
         }
