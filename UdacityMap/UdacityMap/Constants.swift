@@ -10,6 +10,12 @@ import UIKit
 
 class Constants {
     
+    enum Host {
+        case Udacity
+        case Parse
+    }
+    
+    
     struct APIConfiguration {
         static let ApiScheme = "https"
         static let URLScheme = "http"
@@ -95,12 +101,16 @@ class Constants {
     struct ErrorMessages {
         static let credentials = "These credentials don't look right. Make sure you entered the corrects ones and try again please."
         static let studentLocation = "Something went wrong loading the students' pins"
+        static let newPinAddition = "Something went wrong while adding the pin. Try again later please"
         static let parsingJSON = "Could not parse the data as JSON: "
         static let noData = "No data was returned by the request!"
         static let noSuccess = "Your request returned a status code other than 2xx!"
         static let generic = "There was an error with your request: "
         static let popupTitle = "Oops!"
         static let popupButton = "Ok"
+        static let noLocationFound = "No location found"
+        static let noGPS = "It wasn't possible to get your location this time, please check your internet connection and try again later"
+        static let previouslyDenied = "It seems you've previously denied sharing your location with UdacityMap. Please enable it so we can improve your overall experience and try again"
     }
     
     struct UIMessages {
@@ -109,6 +119,11 @@ class Constants {
         static let logout = "Log out"
         static let logoutQuestion = "Are you sure you want to log out now?"
         static let appTitle = "On the map"
+        static let locationPermission = "Using your device's GPS, the app can get your current location for you. May it proceed?"
+        static let pinConfirmation = "Do you wish to add this one as your location into Udacity's map?"
+        static let overwritePin = "You already have added your location into the map, do you wish to overwrite it?"
+        static let missingInfoTitle = "Attention"
+        static let missingIngoMessage = "It seems you've skipped some information for your new location, are you completely sure you want to proceed? If no, just hit \"No\" and fill it before you try again"
     }
     
     struct Utilities {
@@ -116,15 +131,26 @@ class Constants {
     }
 }
 
-func refreshStudentList() {
-    
+let formatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    return formatter
+}()
+
+func questionPopup(title: String, message: String, style: UIAlertControllerStyle, afirmativeAction: ((UIAlertAction) -> Void)?) -> UIAlertController {
+    let questionAlert = UIAlertController(title: title, message: message, preferredStyle: style)
+    let logOutAction = UIAlertAction(title: Constants.UIMessages.affirmative, style: .destructive, handler: afirmativeAction)
+    questionAlert.addAction(logOutAction)
+    questionAlert.addAction(UIAlertAction(title: Constants.UIMessages.negative, style: .default))
+    return questionAlert
 }
 
 func logOutUser(navigationController: UINavigationController?) {
-    let questionAlert = UIAlertController(title: Constants.UIMessages.logout, message: Constants.UIMessages.logoutQuestion, preferredStyle: .actionSheet)
-    let logOutAction = UIAlertAction(title: Constants.UIMessages.affirmative, style: .destructive) { _ in
+    let logoutConfirmation = questionPopup(title: Constants.UIMessages.logout, message: Constants.UIMessages.logoutQuestion, style: .actionSheet, afirmativeAction: { _ in
+        // Removing local stored session keys
         UserDefaults.standard.removeObject(forKey: Constants.Session.Id)
         UserDefaults.standard.removeObject(forKey: Constants.Session.AccountKey)
+        // Invalidating current user's cookie in the API
         Networking.sharedInstance().taskForDELETEMethod(path: Constants.Path.SignIn) {
             (results, error) in
             if let error = error {
@@ -134,10 +160,14 @@ func logOutUser(navigationController: UINavigationController?) {
             }
         }
         navigationController?.popToRootViewController(animated: true)
-    }
-    questionAlert.addAction(logOutAction)
-    questionAlert.addAction(UIAlertAction(title: Constants.UIMessages.negative, style: .default))
-    navigationController?.present(questionAlert, animated: true)
+    })
+    navigationController?.present(logoutConfirmation, animated: true)
+}
+
+func getErrorAlert(errorMessage: String) -> UIAlertController {
+    let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
+    errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
+    return errorAlert
 }
 
 func getCustomTitle() -> UILabel {
@@ -161,12 +191,6 @@ func removeWaitingView(waitingVisualEffect: UIVisualEffectView, view: UIView) {
     }, completion: { _ in
         view.sendSubview(toBack: waitingVisualEffect)
     })
-}
-
-func getErrorAlert(errorMessage: String) -> UIAlertController {
-    let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
-    errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
-    return errorAlert
 }
 
 func launchSafari(studentsURL: String?, studentsFullName: String, navigationController: UINavigationController?) {

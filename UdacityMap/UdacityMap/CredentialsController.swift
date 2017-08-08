@@ -49,7 +49,7 @@ class CredentialsController: UIViewController {
                 (results, error) in
                 if let error = error {
                     print(error)
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
                         self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.credentials), animated: true)
                     }

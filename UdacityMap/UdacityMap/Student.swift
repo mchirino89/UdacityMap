@@ -14,15 +14,15 @@ let updateStudentNotification = Notification.Name(rawValue: Constants.Utilities.
 var studentsList:[Student] = []
 
 struct Student {
-    var objectId: String = ""
-    var uniqueKey: String = ""
-    var fullName: String = ""
-    var mapString: String = ""
-    var mediaURL: String = ""
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    var updatedAt: String = ""
-    var createdAt: String = ""
+    var objectId:String = ""
+    var uniqueKey:String = ""
+    var fullName:String = ""
+    var mapString:String = ""
+    var mediaURL:String = ""
+    var latitude:Double = 0.0
+    var longitude:Double = 0.0
+    var updatedAt:Date = Date()
+    var createdAt:Date = Date()
     
     init(dictionary: [String:AnyObject]) {
         var firstName: String = ""
@@ -53,10 +53,17 @@ struct Student {
             longitude = lon
         }
         if let updated = dictionary[Constants.JSONResponseKeys.update] as? String {
-            updatedAt = updated
+            updatedAt = getDate(serverString: updated)
         }
         if let created = dictionary[Constants.JSONResponseKeys.creation] as? String {
-            createdAt = created
+            createdAt = getDate(serverString: created)
         }
+    }
+    
+    func getDate(serverString: String) -> Date {
+        if let dateConverted = formatter.date(from: (serverString)) {
+            return dateConverted
+        }
+        return Date()
     }
 }

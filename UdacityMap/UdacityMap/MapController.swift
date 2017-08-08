@@ -20,7 +20,8 @@ class MapController: UIViewController {
         viewNavigationItem.titleView = getCustomTitle()
         NotificationCenter.default.addObserver(forName: updateStudentNotification, object: nil, queue: nil, using: studentUpdate)
         updateStudents()
-        // performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
+        // MARK: Testing purposes
+//         performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
     }
     
     func updateStudents() {
@@ -39,6 +40,7 @@ class MapController: UIViewController {
                     DispatchQueue.main.async {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
                         let _ = jsonResultArray.map{ studentsList.append(Student(dictionary: $0)) }
+                        studentsList.sort(by: { $0.updatedAt > $1.updatedAt })
                         var annotations = [MKPointAnnotation]()
                         for item in studentsList {
                             let annotation = MKPointAnnotation()

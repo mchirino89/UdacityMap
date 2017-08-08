@@ -21,20 +21,40 @@ class LocationController: UIViewController {
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var typedAddressTextField: UITextField!
     @IBOutlet weak var sharingView: UIView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var sharingTextField: UITextField!
+    @IBOutlet weak var waitingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var submitButton: ButtonStyle!
     var locationManager = CLLocationManager()
+    let geoCoder = CLGeocoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = 25
         typedAddressTextField.enablesReturnKeyAutomatically = true
         let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction))
         middleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showKeyboardAction)))
         questionView.addGestureRecognizer(dismissKeyboardTap)
-        addressMap.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
-        
+        // MARK: Testing purposes
+//        findLocationButton.isEnabled = true
+//        typedAddressTextField.text = "Pirineos 2, San Cristobal. Venezuela"
+//        sharingTextField.text = "linkedin.com/in/mauriciochirino/"
+//        nameTextField.text = "Mauricio"
+//        lastNameTextField.text = "Chirino"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        typedAddressTextField.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        geoCoder.cancelGeocode()
     }
     
     func showKeyboardAction() {
@@ -45,8 +65,54 @@ class LocationController: UIViewController {
         view.endEditing(true)
     }
     
-    func locateAddressInMap() {
+    func locateAddressInMap(_ address: String) {
+        if !address.isEmpty {
+            dismissKeyboardAction()
+            setWaitingState(loading: true)
+            DispatchQueue.global(qos: .userInteractive).async { [unowned self] in
+                // Background thread
+                self.geoCoder.geocodeAddressString(address) {  (placemarks, error) in
+                    DispatchQueue.main.async {
+                        // Coming back to main UI thread
+                        self.setWaitingState(loading: false)
+                        if let placemarks = placemarks, let location = placemarks.first?.location {
+                            self.addPinInMap(coordinates: location.coordinate)
+                        } else  {
+                            self.noLocationFound()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func setWaitingState(loading: Bool) {
+        loading ? waitingActivityIndicator.startAnimating() : waitingActivityIndicator.stopAnimating()
+        typedAddressTextField.isEnabled = !loading
+        findLocationButton.isEnabled = !loading
+        nameTextField.isEnabled = !loading
+        lastNameTextField.isEnabled = !loading
+        sharingTextField.isEnabled = !loading
+    }
+    
+    func enableButtons() {
+        findLocationButton.isEnabled = !typedAddressTextField.text!.isEmpty
+        submitButton.isEnabled = !sharingTextField.text!.isEmpty
+    }
+    
+    func newPinValidation() {
         dismissKeyboardAction()
+        if nameTextField.text!.isEmpty || lastNameTextField.text!.isEmpty {
+            let missingInfoPopup = questionPopup(title: Constants.UIMessages.missingInfoTitle, message: Constants.UIMessages.missingIngoMessage, style: .alert, afirmativeAction: {
+                [unowned self] _ in self.submitNewPin()
+            })
+            present(missingInfoPopup, animated: true)
+        } else {
+            submitNewPin()
+        }
+    }
+    
+    private func sharingViewTransition() {
         sharingView.isHidden = false
         bottomVisualEffectView.isHidden = true
         bottomView.isHidden = false
@@ -65,13 +131,70 @@ class LocationController: UIViewController {
         })
     }
     
-    func addSharingLink() {
-        dismissKeyboardAction()
-        
+    // If geocode fails, user is given the choice to share his current location instead
+    private func noLocationFound() {
+        let getLocationPopup = questionPopup(title: Constants.ErrorMessages.noLocationFound, message: Constants.UIMessages.locationPermission, style: .alert, afirmativeAction: {
+            [unowned self] _ in
+            // If it was previously denied and he wants to change that, he will be taken directly to the app's settings page
+            if CLLocationManager.authorizationStatus() == .denied {
+                let secondChancePopup = questionPopup(title: Constants.ErrorMessages.popupTitle, message: Constants.ErrorMessages.previouslyDenied, style: .alert, afirmativeAction: { _ in
+                    if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                        UIApplication.shared.open(appSettings, options: [:])
+                    }
+                })
+                self.present(secondChancePopup, animated: true)
+            // Otherwise, request his permission and retrieve current location
+            } else {
+                self.setWaitingState(loading: true)
+                self.locationManager.requestWhenInUseAuthorization()
+                self.locationManager.startUpdatingLocation()
+            }
+        })
+        present(getLocationPopup, animated: true)
+    }
+    
+    private func submitNewPin() {
+        setWaitingState(loading: true)
+        DispatchQueue.global(qos: .userInteractive).async {
+            [unowned self] in
+            let pinCoordinate = self.addressMap.annotations[0].coordinate
+            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"\(self.nameTextField.text!)\", \"lastName\": \"\(self.lastNameTextField.text!)\",\"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\",\"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
+            print(jsonPayload)
+            // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help
+            Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: false, path: Constants.Path.Students, parameters: [:], jsonBody: jsonPayload) {
+                (results, error) in
+                if let error = error {
+                    print(error)
+                    DispatchQueue.main.async {
+                        self.setWaitingState(loading: false)
+                        self.present(getErrorAlert(errorMessage: Constants.ErrorMessages.newPinAddition), animated: true)
+                    }
+                } else {
+                    guard let JSONresponse = results else { return }
+                    print(JSONresponse)
+                    DispatchQueue.main.async {
+                        self.setWaitingState(loading: false)
+                        NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: nil)
+                        self.dismiss(animated: true, completion: {
+                            print("All went good and view dismissed")
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    func addPinInMap(coordinates: CLLocationCoordinate2D) {
+        setWaitingState(loading: false)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        addressMap.addAnnotation(annotation)
+        addressMap.setCenter(coordinates, animated: true)
+        sharingViewTransition()
     }
     
     @IBAction func findLocationAction() {
-        locateAddressInMap()
+        locateAddressInMap(typedAddressTextField.text!)
     }
     
     @IBAction func dismissViewAction() {
@@ -80,34 +203,45 @@ class LocationController: UIViewController {
     }
 
     @IBAction func submitLinkAction() {
-        dismiss(animated: true, completion: {
-            // Update views
-        })
+        newPinValidation()
     }
 }
 
 extension LocationController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        findLocationButton.isEnabled = !typedAddressTextField.text!.isEmpty
-        submitButton.isEnabled = !sharingTextField.text!.isEmpty
+        enableButtons()
+        dismissKeyboardAction()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        enableButtons()
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField == typedAddressTextField ? locateAddressInMap() : addSharingLink()
+        textField == typedAddressTextField ? locateAddressInMap(textField.text!) : newPinValidation()
         return !textField.text!.isEmpty
     }
     
 }
 
 extension LocationController: MKMapViewDelegate {
-    
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         dismissKeyboardAction()
     }
-    
 }
 
 extension LocationController: CLLocationManagerDelegate {
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        addPinInMap(coordinates: locations.first!.coordinate)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+        setWaitingState(loading: false)
+        present(getErrorAlert(errorMessage: Constants.ErrorMessages.noGPS), animated: true)
+    }
 }
