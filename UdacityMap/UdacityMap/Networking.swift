@@ -159,7 +159,7 @@ class Networking: NSObject {
     
     // MARK: Network logic for Http request
     private func networkLogic(logicHandler: @escaping (Data?, URLResponse?, Error?) -> Void, udacityAPI: Bool, completionHandlerForRequest: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
-        // I wanted to move the logic from http request into here but i didn't find a way to execute the closeru 'logicHandler' within this method. Could you please tell me how to do it?
+        // ⚠️ I wanted to move the logic from http request into here but i didn't find a way to execute the closeru 'logicHandler' within this method. Could you please tell me how to do it?
 //        logicHandler() {
 //            (data, response, error) in
 //        }
