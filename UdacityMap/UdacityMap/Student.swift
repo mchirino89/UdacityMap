@@ -10,9 +10,6 @@ import Foundation
 
 let updateStudentNotification = Notification.Name(rawValue: Constants.Utilities.updateNotification)
 
-// Is this the right place to put the students array? 
-var studentsList:[Student] = []
-
 struct Student {
     var objectId:String = ""
     var uniqueKey:String = ""
@@ -66,4 +63,10 @@ struct Student {
         }
         return Date()
     }
+}
+
+class StudentDataSource {
+    var studentData = [Student]()
+    static let sharedInstance = StudentDataSource()
+    private init() {}
 }

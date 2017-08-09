@@ -39,10 +39,11 @@ class MapController: UIViewController {
                 } else {
                     DispatchQueue.main.async {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
-                        let _ = jsonResultArray.map{ studentsList.append(Student(dictionary: $0)) }
-                        studentsList.sort(by: { $0.updatedAt > $1.updatedAt })
+                        
+                        let _ = jsonResultArray.map{ StudentDataSource.sharedInstance.studentData.append(Student(dictionary: $0)) }
+                        StudentDataSource.sharedInstance.studentData.sort(by: { $0.updatedAt > $1.updatedAt })
                         var annotations = [MKPointAnnotation]()
-                        for item in studentsList {
+                        for item in StudentDataSource.sharedInstance.studentData {
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
                             annotation.title = "\(item.fullName)"

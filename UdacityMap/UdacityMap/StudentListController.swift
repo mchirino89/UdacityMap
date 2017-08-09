@@ -48,12 +48,12 @@ class StudentListController: UIViewController {
 extension StudentListController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentsList.count
+        return StudentDataSource.sharedInstance.studentData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Storyboard.studentCell) as! StudentCell
-        cell.studentNameLabel.text = studentsList[indexPath.row].fullName
+        cell.studentNameLabel.text = StudentDataSource.sharedInstance.studentData[indexPath.row].fullName
         if cell.studentNameLabel.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             cell.studentNameLabel.font = UIFont(name: Constants.UIElements.noNameProvidedFont, size: 17)
             cell.studentNameLabel.text = "No name provided"
@@ -65,7 +65,7 @@ extension StudentListController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        launchSafari(studentsURL: studentsList[indexPath.row].mediaURL, studentsFullName: studentsList[indexPath.row].fullName, navigationController: navigationController)
+        launchSafari(studentsURL: StudentDataSource.sharedInstance.studentData[indexPath.row].mediaURL, studentsFullName: StudentDataSource.sharedInstance.studentData[indexPath.row].fullName, navigationController: navigationController)
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
     }
     

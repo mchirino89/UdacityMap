@@ -67,6 +67,8 @@ class CredentialsController: UIViewController {
                     UserDefaults.standard.set(Networking.sharedInstance().userID ?? 0, forKey: Constants.Session.AccountKey)
                     UserDefaults.standard.set(Networking.sharedInstance().sessionID ?? "user-token", forKey: Constants.Session.Id)
                     
+                    
+                    
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
                         self.passwordTextField.text = ""

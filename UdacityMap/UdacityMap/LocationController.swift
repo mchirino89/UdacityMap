@@ -157,8 +157,6 @@ class LocationController: UIViewController {
             
             // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help
             
-            // It seems you didn't read my previous comment above 👆🏽. On top of that please have a look at the documentation please, there's no (or at least i don't see where) i can get the user name and last name. This 👉🏽 https://d17h27t6h515a5.cloudfront.net/topher/2016/June/57583f67_post-session/post-session.json is the response i get and it's the same as posted in the documentation here: https://classroom.udacity.com/nanodegrees/nd003/parts/99f2246b-fb9e-41a9-9834-3b7db87f7628/modules/0e6213b2-bc78-490c-a967-f67fa258ed12/lessons/3071699113239847/concepts/f1858f50-76e4-40ee-9309-d597c70d0619 for login endpoint.
-            
             Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: false, path: Constants.Path.Students, parameters: [:], jsonBody: jsonPayload) {
                 (results, error) in
                 if let error = error {
