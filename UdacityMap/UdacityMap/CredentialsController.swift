@@ -42,7 +42,7 @@ class CredentialsController: UIViewController {
         view.endEditing(true)
         setWaitingView(isOn: true, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-            // Quick question: Is this the proper form to prevent a retain cycle in here?
+            // Quick question: Is this the proper form to prevent a retain cycle in here? 👉🏽 [unowned self] 
             [unowned self] in
             let jsonPayload = "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}"
             Networking.sharedInstance().taskForPOSTMethod(host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
