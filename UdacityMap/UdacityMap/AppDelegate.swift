@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // If previosly logged, then skip login view
         if UserDefaults.standard.value(forKey: Constants.Session.Id) != nil {
+            Networking.sharedInstance().name = (UserDefaults.standard.value(forKey: Constants.JSONResponseKeys.name) as? String)!
+            Networking.sharedInstance().lastName = (UserDefaults.standard.value(forKey: Constants.JSONResponseKeys.lastName) as? String)!
             Networking.sharedInstance().sessionID = UserDefaults.standard.value(forKey: Constants.Session.Id) as? String
             Networking.sharedInstance().userID = UserDefaults.standard.value(forKey: Constants.Session.AccountKey) as? Int
             let tabView = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.tabView)

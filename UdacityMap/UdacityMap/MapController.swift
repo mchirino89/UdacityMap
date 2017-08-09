@@ -24,32 +24,26 @@ class MapController: UIViewController {
     
     func updateStudents() {
         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": true])
-        mapView.removeAnnotations(mapView.annotations)
-        DispatchQueue.global(qos: .userInteractive).async {
-            Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject, "order": "-updatedAt" as AnyObject], jsonBody: "") {
-                (results, error) in
+        DispatchQueue.global(qos: .userInteractive).async { [unowned self] in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject, "order": "-updatedAt" as AnyObject], jsonBody: "") { (results, error) in
                 if let error = error {
                     print(error)
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": false])
-                        self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.studentLocation), animated: true)
+                        self.present(UdacityMap.getPopupAlert(message: Constants.ErrorMessages.studentLocation), animated: true)
                     }
                 } else {
                     DispatchQueue.main.async {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
                         let _ = jsonResultArray.map{ StudentDataSource.sharedInstance.studentData.append(Student(dictionary: $0)) }
-                        var annotations = [MKPointAnnotation]()
                         for item in StudentDataSource.sharedInstance.studentData {
                             let annotation = MKPointAnnotation()
                             annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
                             annotation.title = "\(item.fullName)"
                             annotation.subtitle = item.mediaURL
-                            annotations.append(annotation)
-                            // What's the difference between adding annotantios directly into the map here 👇🏽
-                            // self.mapView.addAnnotation(annotation)
+                             self.mapView.addAnnotation(annotation)
                         }
-                        // And adding them like this? 👇🏽
-                        self.mapView.addAnnotations(annotations)
                         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": false])
                     }
                 }

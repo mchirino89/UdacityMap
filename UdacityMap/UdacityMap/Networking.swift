@@ -75,7 +75,12 @@ class Networking: NSObject {
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters))
         request.httpMethod = "POST"
-        request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.acceptance)
+        if host { // Udacity
+            request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.acceptance)
+        } else { // Parse
+            request.addValue(Constants.APIConfiguration.AppId, forHTTPHeaderField: Constants.ParameterKeys.AppId)
+            request.addValue(Constants.APIConfiguration.ApiKey, forHTTPHeaderField: Constants.ParameterKeys.ApiKey)
+        }
         request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.content)
         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
         
@@ -120,10 +125,8 @@ class Networking: NSObject {
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
-        xsrfCookie = sharedCookieStorage.cookies!.filter({ $0.name == "XSRF-TOKEN" })[0]
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: Constants.HTTPHeaderField.Token)
-        }
+        guard let currentCoockie = sharedCookieStorage.cookies?.filter({ $0.name == "XSRF-TOKEN" })[0] else { return }
+        request.setValue(currentCoockie.value, forHTTPHeaderField: Constants.HTTPHeaderField.Token)
         
         /* 4. Make the request */
         session.dataTask(with: request as URLRequest) { (data, response, error) in

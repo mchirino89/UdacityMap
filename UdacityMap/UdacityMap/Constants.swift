@@ -125,11 +125,20 @@ class Constants {
         static let overwritePin = "You already have added your location into the map, do you wish to overwrite it?"
         static let missingInfoTitle = "Attention"
         static let missingIngoMessage = "It seems you've skipped some information for your new location, are you completely sure you want to proceed? If no, just hit \"No\" and fill it before you try again"
+        static let postedPinTitle = "Pin added!"
+        static let postedPinMessage = "Your location has been added to Udacity's map 😄"
+        static let postedPinButton = "Awesome"
     }
     
     struct Utilities {
         static let updateNotification = "com.3codegeeks.UdacityMap.updateNotification"
     }
+}
+
+func getPopupAlert(message: String, title: String = Constants.ErrorMessages.popupTitle, buttonText: String = Constants.ErrorMessages.popupButton) -> UIAlertController {
+    let popupAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    popupAlert.addAction(UIAlertAction(title: buttonText, style: .default))
+    return popupAlert
 }
 
 func questionPopup(title: String, message: String, style: UIAlertControllerStyle, afirmativeAction: ((UIAlertAction) -> Void)?) -> UIAlertController {
@@ -143,6 +152,8 @@ func questionPopup(title: String, message: String, style: UIAlertControllerStyle
 func logOutUser(navigationController: UINavigationController?) {
     let logoutConfirmation = questionPopup(title: Constants.UIMessages.logout, message: Constants.UIMessages.logoutQuestion, style: .actionSheet, afirmativeAction: { _ in
         // Removing local stored session keys
+        UserDefaults.standard.removeObject(forKey: Constants.JSONResponseKeys.name)
+        UserDefaults.standard.removeObject(forKey: Constants.JSONResponseKeys.lastName)
         UserDefaults.standard.removeObject(forKey: Constants.Session.Id)
         UserDefaults.standard.removeObject(forKey: Constants.Session.AccountKey)
         // Invalidating current user's cookie in the API
@@ -157,12 +168,6 @@ func logOutUser(navigationController: UINavigationController?) {
         navigationController?.popToRootViewController(animated: true)
     })
     navigationController?.present(logoutConfirmation, animated: true)
-}
-
-func getErrorAlert(errorMessage: String) -> UIAlertController {
-    let errorAlert = UIAlertController(title: Constants.ErrorMessages.popupTitle, message: errorMessage, preferredStyle: .alert)
-    errorAlert.addAction(UIAlertAction(title: Constants.ErrorMessages.popupButton, style: .default))
-    return errorAlert
 }
 
 func getCustomTitle() -> UILabel {
@@ -196,9 +201,9 @@ func launchSafari(studentsURL: String?, studentsFullName: String, navigationCont
                 print("\(success) for URL \(toOpen)")
             })
         } else {
-            navigationController?.present(getErrorAlert(errorMessage: "\(studentsFullName) provided a missformatted URL"), animated: true)
+            navigationController?.present(getPopupAlert(message: "\(studentsFullName) provided a missformatted URL"), animated: true)
         }
     } else {
-        navigationController?.present(getErrorAlert(errorMessage: "\(studentsFullName) provided a missformatted URL"), animated: true)
+        navigationController?.present(getPopupAlert(message: "\(studentsFullName) provided a missformatted URL"), animated: true)
     }
 }

@@ -37,6 +37,11 @@ class LocationController: UIViewController {
         middleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showKeyboardAction)))
         questionView.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
+        // Testing
+        typedAddressTextField.text = "Barrio Obrero Tachira"
+        sharingTextField.text = "https://www.linkedin.com/in/mauriciochirino/"
+        locateAddressInMap(typedAddressTextField.text!)
+        submitButton.isEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,18 +142,16 @@ class LocationController: UIViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             [unowned self] in
             let pinCoordinate = self.addressMap.annotations[0].coordinate
-            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"\(Networking.sharedInstance().name)\", \"lastname\": \"\(Networking.sharedInstance().lastName)\", \"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\", \"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
+            let jsonPayload = "{\"firstName\": \"\(Networking.sharedInstance().name)\", \"lastname\": \"\(Networking.sharedInstance().lastName)\", \"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\", \"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
             print(jsonPayload)
             
-            // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help
-            
-            Networking.sharedInstance().taskForPOSTMethod(host: false, path: Constants.Path.Students, parameters: [:], jsonBody: jsonPayload) {
+            Networking.sharedInstance().taskForPOSTMethod(host: false, path: Constants.Path.Students, parameters: ["uniqueKey": Networking.sharedInstance().userID! as AnyObject], jsonBody: jsonPayload) {
                 (results, error) in
                 if let error = error {
                     print(error)
                     DispatchQueue.main.async {
                         self.setWaitingState(loading: false)
-                        self.present(getErrorAlert(errorMessage: Constants.ErrorMessages.newPinAddition), animated: true)
+                        self.present(getPopupAlert(message: Constants.ErrorMessages.newPinAddition), animated: true)
                     }
                 } else {
                     guard let JSONresponse = results else { return }
@@ -156,9 +159,8 @@ class LocationController: UIViewController {
                     DispatchQueue.main.async {
                         self.setWaitingState(loading: false)
                         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: nil)
-                        self.dismiss(animated: true, completion: {
-                            print("All went good and view dismissed")
-                        })
+                        self.navigationController?.present(getPopupAlert(message: Constants.UIMessages.postedPinTitle, title: Constants.UIMessages.postedPinMessage, buttonText: Constants.UIMessages.postedPinButton), animated: true)
+                        self.dismiss(animated: true)
                     }
                 }
             }
@@ -223,6 +225,6 @@ extension LocationController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
         setWaitingState(loading: false)
-        present(getErrorAlert(errorMessage: Constants.ErrorMessages.noGPS), animated: true)
+        present(getPopupAlert(message: Constants.ErrorMessages.noGPS), animated: true)
     }
 }

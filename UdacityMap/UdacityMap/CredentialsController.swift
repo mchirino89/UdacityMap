@@ -22,6 +22,9 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
+        // Testing
+        emailTextField.text = "m.chirino89@gmail.com"
+        passwordTextField.text = "QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI"
     }
     
     @IBAction func loginAction() {
@@ -52,17 +55,14 @@ class CredentialsController: UIViewController {
                     DispatchQueue.main.async {
                         setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
                         if error.code == 403 {
-                            self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.credentials), animated: true)
+                            self.present(UdacityMap.getPopupAlert(message: Constants.ErrorMessages.credentials), animated: true)
                         } else {
-                            self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.internetConnection), animated: true)
+                            self.present(UdacityMap.getPopupAlert(message: Constants.ErrorMessages.internetConnection), animated: true)
                         }
                     }
                 } else {
                     guard let JSONresponse = results else { return }
-                    print(JSONresponse)
-                    // What's the difference between casting as! 👇🏽
                     Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID] as? String
-                    // And casting as? 👇🏽?
                     Networking.sharedInstance().userID = Int(JSONresponse[Constants.JSONResponseKeys.Account]![Constants.JSONResponseKeys.Key] as! String)
                     UserDefaults.standard.set(Networking.sharedInstance().userID ?? 0, forKey: Constants.Session.AccountKey)
                     UserDefaults.standard.set(Networking.sharedInstance().sessionID ?? "user-token", forKey: Constants.Session.Id)
@@ -72,6 +72,8 @@ class CredentialsController: UIViewController {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { print(error.debugDescription); return }
                         Networking.sharedInstance().name = jsonResultArray[0][Constants.JSONResponseKeys.name] as! String
                         Networking.sharedInstance().lastName = jsonResultArray[0][Constants.JSONResponseKeys.lastName] as! String
+                        UserDefaults.standard.set(Networking.sharedInstance().name, forKey: Constants.JSONResponseKeys.name)
+                        UserDefaults.standard.set(Networking.sharedInstance().lastName, forKey: Constants.JSONResponseKeys.lastName)
                     }
                     
                     DispatchQueue.main.async {
