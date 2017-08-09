@@ -22,6 +22,9 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
+        // MARK: Testing purposes
+        emailTextField.text = "m.chirino89@gmail.com"
+        passwordTextField.text = "QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI"
     }
     
     @IBAction func loginAction() {
@@ -67,9 +70,11 @@ class CredentialsController: UIViewController {
                     UserDefaults.standard.set(Networking.sharedInstance().userID ?? 0, forKey: Constants.Session.AccountKey)
                     UserDefaults.standard.set(Networking.sharedInstance().sessionID ?? "user-token", forKey: Constants.Session.Id)
                     
-                    Networking.sharedInstance().taskForPOSTMethod(host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
+                    Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["where": "{\"uniqueKey\":\"\(Networking.sharedInstance().userID ?? 0)\"}" as AnyObject], jsonBody: "") {
                         (results, error) in
-                        
+                        guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { print(error.debugDescription); return }
+                        Networking.sharedInstance().name = jsonResultArray[0][Constants.JSONResponseKeys.name] as! String
+                        Networking.sharedInstance().lastName = jsonResultArray[0][Constants.JSONResponseKeys.lastName] as! String
                     }
                     
                     DispatchQueue.main.async {

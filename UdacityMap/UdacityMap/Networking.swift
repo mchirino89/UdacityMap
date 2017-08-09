@@ -16,6 +16,10 @@ class Networking: NSObject {
     var sessionID: String? = nil
     var userID: Int? = nil
     
+    // users id credentials
+    var name = ""
+    var lastName = ""
+    
     // MARK: Initializers
     
     override init() {

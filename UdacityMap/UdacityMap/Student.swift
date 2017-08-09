@@ -18,8 +18,8 @@ struct Student {
     var mediaURL:String = ""
     var latitude:Double = 0.0
     var longitude:Double = 0.0
-    var updatedAt:Date = Date()
-    var createdAt:Date = Date()
+    var updatedAt:String = ""
+    var createdAt:String = ""
     
     init(dictionary: [String:AnyObject]) {
         var firstName: String = ""
@@ -50,18 +50,11 @@ struct Student {
             longitude = lon
         }
         if let updated = dictionary[Constants.JSONResponseKeys.update] as? String {
-            updatedAt = getDate(serverString: updated)
+            updatedAt = updated
         }
         if let created = dictionary[Constants.JSONResponseKeys.creation] as? String {
-            createdAt = getDate(serverString: created)
+            createdAt = created
         }
-    }
-    
-    func getDate(serverString: String) -> Date {
-        if let dateConverted = formatter.date(from: (serverString)) {
-            return dateConverted
-        }
-        return Date()
     }
 }
 

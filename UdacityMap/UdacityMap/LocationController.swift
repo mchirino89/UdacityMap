@@ -37,6 +37,8 @@ class LocationController: UIViewController {
         middleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showKeyboardAction)))
         questionView.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
+        // MARK: Testing purposes
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,7 +139,7 @@ class LocationController: UIViewController {
         DispatchQueue.global(qos: .userInteractive).async {
             [unowned self] in
             let pinCoordinate = self.addressMap.annotations[0].coordinate
-            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"name)\", \"lastName\": \"lastname\",\"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\",\"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
+            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"\(Networking.sharedInstance().name)\", \"lastname\": \"\(Networking.sharedInstance().lastName)\", \"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\", \"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
             print(jsonPayload)
             
             // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help

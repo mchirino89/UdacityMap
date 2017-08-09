@@ -20,15 +20,13 @@ class MapController: UIViewController {
         viewNavigationItem.titleView = getCustomTitle()
         NotificationCenter.default.addObserver(forName: updateStudentNotification, object: nil, queue: nil, using: studentUpdate)
         updateStudents()
-        // MARK: Testing purposes
-//         performSegue(withIdentifier: "addLocationFromMapSegue", sender: nil)
     }
     
     func updateStudents() {
         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": true])
         mapView.removeAnnotations(mapView.annotations)
         DispatchQueue.global(qos: .userInteractive).async {
-            Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject], jsonBody: "") {
+            Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject, "order": "-updatedAt" as AnyObject], jsonBody: "") {
                 (results, error) in
                 if let error = error {
                     print(error)
@@ -39,9 +37,7 @@ class MapController: UIViewController {
                 } else {
                     DispatchQueue.main.async {
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { return }
-                        
                         let _ = jsonResultArray.map{ StudentDataSource.sharedInstance.studentData.append(Student(dictionary: $0)) }
-                        StudentDataSource.sharedInstance.studentData.sort(by: { $0.updatedAt > $1.updatedAt })
                         var annotations = [MKPointAnnotation]()
                         for item in StudentDataSource.sharedInstance.studentData {
                             let annotation = MKPointAnnotation()
