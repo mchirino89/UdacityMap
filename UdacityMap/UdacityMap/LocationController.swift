@@ -21,8 +21,6 @@ class LocationController: UIViewController {
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var typedAddressTextField: UITextField!
     @IBOutlet weak var sharingView: UIView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var sharingTextField: UITextField!
     @IBOutlet weak var waitingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var bottomView: UIView!
@@ -84,26 +82,12 @@ class LocationController: UIViewController {
         loading ? waitingActivityIndicator.startAnimating() : waitingActivityIndicator.stopAnimating()
         typedAddressTextField.isEnabled = !loading
         findLocationButton.isEnabled = !loading
-        nameTextField.isEnabled = !loading
-        lastNameTextField.isEnabled = !loading
         sharingTextField.isEnabled = !loading
     }
     
     func enableButtons() {
         findLocationButton.isEnabled = !typedAddressTextField.text!.isEmpty
         submitButton.isEnabled = !sharingTextField.text!.isEmpty
-    }
-    
-    func newPinValidation() {
-        dismissKeyboardAction()
-        if nameTextField.text!.isEmpty || lastNameTextField.text!.isEmpty {
-            let missingInfoPopup = questionPopup(title: Constants.UIMessages.missingInfoTitle, message: Constants.UIMessages.missingIngoMessage, style: .alert, afirmativeAction: {
-                [unowned self] _ in self.submitNewPin()
-            })
-            present(missingInfoPopup, animated: true)
-        } else {
-            submitNewPin()
-        }
     }
     
     private func sharingViewTransition() {
@@ -147,12 +131,13 @@ class LocationController: UIViewController {
         present(getLocationPopup, animated: true)
     }
     
-    private func submitNewPin() {
+    func submitNewPin() {
+        dismissKeyboardAction()
         setWaitingState(loading: true)
         DispatchQueue.global(qos: .userInteractive).async {
             [unowned self] in
             let pinCoordinate = self.addressMap.annotations[0].coordinate
-            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"\(self.nameTextField.text!)\", \"lastName\": \"\(self.lastNameTextField.text!)\",\"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\",\"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
+            let jsonPayload = "{\"uniqueKey\": \"\(Networking.sharedInstance().userID!)\", \"firstName\": \"name)\", \"lastName\": \"lastname\",\"mapString\": \"\(self.typedAddressTextField.text!)\", \"mediaURL\": \"\(self.sharingTextField.text!)\",\"latitude\": \(pinCoordinate.latitude), \"longitude\": \(pinCoordinate.longitude)}"
             print(jsonPayload)
             
             // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help
@@ -199,7 +184,7 @@ class LocationController: UIViewController {
     }
 
     @IBAction func submitLinkAction() {
-        newPinValidation()
+        submitNewPin()
     }
 }
 
@@ -216,7 +201,7 @@ extension LocationController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField == typedAddressTextField ? locateAddressInMap(textField.text!) : newPinValidation()
+        textField == typedAddressTextField ? locateAddressInMap(textField.text!) : submitNewPin()
         return !textField.text!.isEmpty
     }
     

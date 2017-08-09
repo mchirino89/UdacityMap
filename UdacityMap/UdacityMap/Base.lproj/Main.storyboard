@@ -86,7 +86,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkU-iB-7sk">
                                 <rect key="frame" x="16.666666666666657" y="349.66666666666663" width="380.66666666666663" height="220.66666666666663"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="m.chirino89@gmail.com" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-3I-2cm">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-3I-2cm">
                                         <rect key="frame" x="0.0" y="0.0" width="380.66666666666663" height="49.666666666666629"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
@@ -96,7 +96,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="XzT-QG-K1k"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mh-Yxm">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mh-Yxm">
                                         <rect key="frame" x="0.0" y="69.666666666666629" width="380.66666666666663" height="49.666666666666686"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
@@ -418,22 +418,8 @@
                                                 <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpW-Ml-1d3">
                                                     <rect key="frame" x="20.666666666666657" y="64.333333333333343" width="372.66666666666663" height="167.33333333333331"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your name here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7ak-YN-SVt">
-                                                            <rect key="frame" x="0.0" y="0.0" width="372.33333333333331" height="33.666666666666671"/>
-                                                            <color key="textColor" red="0.96462470290000002" green="0.96475964780000001" blue="0.96458214519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="HMd-Ao-yKh" id="RkL-wl-KYM"/>
-                                                            </connections>
-                                                        </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your last name here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-7U-zIO">
-                                                            <rect key="frame" x="70.666666666666657" y="71.666666666666671" width="231.99999999999997" height="24"/>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter link to share here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-7U-zIO">
+                                                            <rect key="frame" x="0.66666666666665719" y="33.000000000000007" width="372.33333333333337" height="101.66666666666669"/>
                                                             <color key="textColor" red="0.96462470290000002" green="0.96475964780000001" blue="0.96458214519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -446,30 +432,10 @@
                                                                 <outlet property="delegate" destination="HMd-Ao-yKh" id="3sc-oN-KE7"/>
                                                             </connections>
                                                         </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter link to share here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="auO-rB-fvG">
-                                                            <rect key="frame" x="-0.66666666666665719" y="133.66666666666669" width="372.33333333333326" height="33.666666666666657"/>
-                                                            <color key="textColor" red="0.96462470290000002" green="0.96475964780000001" blue="0.96458214519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="HMd-Ao-yKh" id="1eW-GG-qAd"/>
-                                                            </connections>
-                                                        </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="7ak-YN-SVt" firstAttribute="top" secondItem="dpW-Ml-1d3" secondAttribute="top" id="GYx-dv-pcL"/>
-                                                        <constraint firstItem="7ak-YN-SVt" firstAttribute="width" secondItem="auO-rB-fvG" secondAttribute="width" id="QaB-Wo-IcK"/>
-                                                        <constraint firstItem="7ak-YN-SVt" firstAttribute="centerX" secondItem="auO-rB-fvG" secondAttribute="centerX" id="Zuq-xE-zvD"/>
-                                                        <constraint firstItem="7ak-YN-SVt" firstAttribute="height" secondItem="auO-rB-fvG" secondAttribute="height" id="js3-Vt-aNn"/>
                                                         <constraint firstItem="X6u-7U-zIO" firstAttribute="centerY" secondItem="dpW-Ml-1d3" secondAttribute="centerY" id="k5I-9C-UWP"/>
-                                                        <constraint firstItem="X6u-7U-zIO" firstAttribute="centerX" secondItem="7ak-YN-SVt" secondAttribute="centerX" id="zYb-Tn-vcA"/>
-                                                        <constraint firstAttribute="bottom" secondItem="auO-rB-fvG" secondAttribute="bottom" id="zrW-hF-xya"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -599,16 +565,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="auO-rB-fvG" firstAttribute="height" secondItem="KoV-eg-vkM" secondAttribute="height" multiplier="0.33" id="3DC-gX-mI5"/>
                             <constraint firstItem="zed-Aw-6k2" firstAttribute="height" secondItem="lkq-3S-SB0" secondAttribute="height" multiplier="0.35" id="4QP-zH-Jz8"/>
                             <constraint firstItem="IK1-Uf-uWd" firstAttribute="centerX" secondItem="31D-R7-FIW" secondAttribute="centerX" id="6qY-2g-i4P"/>
+                            <constraint firstItem="X6u-7U-zIO" firstAttribute="height" secondItem="KoV-eg-vkM" secondAttribute="height" id="7PK-Vg-Kh3"/>
                             <constraint firstItem="7iZ-7p-1sL" firstAttribute="top" secondItem="YqG-uW-7eR" secondAttribute="bottom" id="9kq-WZ-Avx"/>
-                            <constraint firstItem="auO-rB-fvG" firstAttribute="width" secondItem="KoV-eg-vkM" secondAttribute="width" id="AwC-3x-tnc"/>
                             <constraint firstItem="zed-Aw-6k2" firstAttribute="width" secondItem="lkq-3S-SB0" secondAttribute="width" id="Ayp-ts-zRC"/>
                             <constraint firstItem="Og1-q4-Bs6" firstAttribute="centerY" secondItem="wnl-va-eOm" secondAttribute="centerY" id="DPo-hY-GFF"/>
                             <constraint firstItem="wnl-va-eOm" firstAttribute="centerX" secondItem="zed-Aw-6k2" secondAttribute="centerX" id="EHX-C0-hdO"/>
                             <constraint firstItem="zed-Aw-6k2" firstAttribute="top" secondItem="lkq-3S-SB0" secondAttribute="topMargin" id="LRO-oL-hh9"/>
                             <constraint firstItem="YqG-uW-7eR" firstAttribute="width" secondItem="lkq-3S-SB0" secondAttribute="width" id="SMe-Im-vHD"/>
+                            <constraint firstItem="X6u-7U-zIO" firstAttribute="centerX" secondItem="KoV-eg-vkM" secondAttribute="centerX" id="Su5-uL-sTQ"/>
                             <constraint firstItem="wnl-va-eOm" firstAttribute="top" secondItem="zed-Aw-6k2" secondAttribute="bottom" id="WNY-G7-ozf"/>
                             <constraint firstItem="IK1-Uf-uWd" firstAttribute="height" secondItem="31D-R7-FIW" secondAttribute="height" id="XYF-Zn-FKO"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="centerX" secondItem="zed-Aw-6k2" secondAttribute="centerX" id="YF7-8j-SUu"/>
@@ -618,6 +584,7 @@
                             <constraint firstItem="Og1-q4-Bs6" firstAttribute="centerX" secondItem="lkq-3S-SB0" secondAttribute="centerX" id="bRf-xp-n6f"/>
                             <constraint firstItem="xUb-kc-aVx" firstAttribute="centerX" secondItem="7PA-No-A5K" secondAttribute="centerX" id="cM9-lZ-yxH"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="width" secondItem="zed-Aw-6k2" secondAttribute="width" id="gmp-ss-Npa"/>
+                            <constraint firstItem="X6u-7U-zIO" firstAttribute="width" secondItem="KoV-eg-vkM" secondAttribute="width" id="nb9-ZO-NP4"/>
                             <constraint firstItem="31D-R7-FIW" firstAttribute="height" secondItem="zed-Aw-6k2" secondAttribute="height" multiplier="0.725" id="pc2-SE-RZE"/>
                             <constraint firstItem="YqG-uW-7eR" firstAttribute="leading" secondItem="lkq-3S-SB0" secondAttribute="leading" id="rXo-En-oCw"/>
                             <constraint firstItem="IK1-Uf-uWd" firstAttribute="width" secondItem="31D-R7-FIW" secondAttribute="width" id="rwt-Di-zel"/>
@@ -625,7 +592,6 @@
                             <constraint firstItem="zed-Aw-6k2" firstAttribute="centerX" secondItem="lkq-3S-SB0" secondAttribute="centerX" id="ugQ-sh-tg7"/>
                             <constraint firstItem="wnl-va-eOm" firstAttribute="width" secondItem="lkq-3S-SB0" secondAttribute="width" id="vEK-7n-Vkw"/>
                             <constraint firstItem="YqG-uW-7eR" firstAttribute="height" secondItem="lkq-3S-SB0" secondAttribute="height" multiplier="0.825" id="vHP-Yl-qvW"/>
-                            <constraint firstItem="auO-rB-fvG" firstAttribute="centerX" secondItem="KoV-eg-vkM" secondAttribute="centerX" id="z1F-jJ-2uJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -634,11 +600,9 @@
                         <outlet property="bottomVisualEffectView" destination="31D-R7-FIW" id="hQj-hH-5jj"/>
                         <outlet property="dismissViewButton" destination="Yh5-kM-hRD" id="w0R-Wk-zyQ"/>
                         <outlet property="findLocationButton" destination="7PA-No-A5K" id="XjY-fM-1kR"/>
-                        <outlet property="lastNameTextField" destination="X6u-7U-zIO" id="LYX-9q-BkO"/>
                         <outlet property="middleView" destination="wnl-va-eOm" id="Y4Z-LB-kOf"/>
-                        <outlet property="nameTextField" destination="7ak-YN-SVt" id="zg9-MR-gg0"/>
                         <outlet property="questionView" destination="6Gz-UR-6tp" id="GBn-VR-iRI"/>
-                        <outlet property="sharingTextField" destination="auO-rB-fvG" id="eC2-sR-X6e"/>
+                        <outlet property="sharingTextField" destination="X6u-7U-zIO" id="EEF-Tn-TCY"/>
                         <outlet property="sharingView" destination="dpW-Ml-1d3" id="0Yn-o6-TDm"/>
                         <outlet property="submitButton" destination="xUb-kc-aVx" id="qLg-Ol-EMw"/>
                         <outlet property="topVisualEffectView" destination="5wc-Aj-fIf" id="J26-Pm-Mkg"/>
