@@ -22,9 +22,6 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
-        // MARK: Testing purposes
-        emailTextField.text = "m.chirino89@gmail.com"
-        passwordTextField.text = "QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI"
     }
     
     @IBAction func loginAction() {

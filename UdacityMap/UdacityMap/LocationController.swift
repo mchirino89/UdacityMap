@@ -37,8 +37,6 @@ class LocationController: UIViewController {
         middleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showKeyboardAction)))
         questionView.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
-        // MARK: Testing purposes
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
