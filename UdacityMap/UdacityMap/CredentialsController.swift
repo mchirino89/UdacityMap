@@ -51,7 +51,11 @@ class CredentialsController: UIViewController {
                     print(error)
                     DispatchQueue.main.async {
                         setWaitingView(isOn: false, waitingVisualEffect: self.waitingVisualEffect, view: self.view)
-                        self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.credentials), animated: true)
+                        if error.code == 403 {
+                            self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.credentials), animated: true)
+                        } else {
+                            self.present(UdacityMap.getErrorAlert(errorMessage: Constants.ErrorMessages.internetConnection), animated: true)
+                        }
                     }
                 } else {
                     guard let JSONresponse = results else { return }
@@ -60,8 +64,9 @@ class CredentialsController: UIViewController {
                     Networking.sharedInstance().sessionID = JSONresponse[Constants.JSONResponseKeys.Session]![Constants.JSONResponseKeys.UserID] as? String
                     // And casting as? 👇🏽?
                     Networking.sharedInstance().userID = Int(JSONresponse[Constants.JSONResponseKeys.Account]![Constants.JSONResponseKeys.Key] as! String)
-                    UserDefaults.standard.set(Networking.sharedInstance().userID!, forKey: Constants.Session.AccountKey)
-                    UserDefaults.standard.set(Networking.sharedInstance().sessionID!, forKey: Constants.Session.Id)
+                    UserDefaults.standard.set(Networking.sharedInstance().userID ?? 0, forKey: Constants.Session.AccountKey)
+                    UserDefaults.standard.set(Networking.sharedInstance().sessionID ?? "user-token", forKey: Constants.Session.Id)
+                    
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
                         self.passwordTextField.text = ""

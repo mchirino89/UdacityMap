@@ -74,15 +74,14 @@ class Networking: NSObject {
         request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.acceptance)
         request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.content)
         request.httpBody = jsonBody.data(using: String.Encoding.utf8)
-        print(request.httpBody!)
         
         /* 4. Make the request */
         session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            func sendError(_ error: String) {
+            func sendError(_ error: String, statusCode: Int = 1) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(nil, NSError(domain: "taskForGETMethod", code: statusCode, userInfo: userInfo))
             }
             
             /* GUARD: Was there an error? */
@@ -94,7 +93,7 @@ class Networking: NSObject {
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print(response!.debugDescription)
-                sendError(Constants.ErrorMessages.noSuccess)
+                sendError(Constants.ErrorMessages.noSuccess, statusCode: (response as! HTTPURLResponse).statusCode)
                 return
             }
             

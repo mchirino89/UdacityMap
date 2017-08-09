@@ -100,6 +100,7 @@ class Constants {
     
     struct ErrorMessages {
         static let credentials = "These credentials don't look right. Make sure you entered the corrects ones and try again please."
+        static let internetConnection = "It seems you don't have an active internet connection right now. Make sure you do before you try again please"
         static let studentLocation = "Something went wrong loading the students' pins"
         static let newPinAddition = "Something went wrong while adding the pin. Try again later please"
         static let parsingJSON = "Could not parse the data as JSON: "
