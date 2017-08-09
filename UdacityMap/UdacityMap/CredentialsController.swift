@@ -22,9 +22,6 @@ class CredentialsController: UIViewController {
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
-        // Testing
-        emailTextField.text = "m.chirino89@gmail.com"
-        passwordTextField.text = "QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI"
     }
     
     @IBAction func loginAction() {
@@ -70,10 +67,12 @@ class CredentialsController: UIViewController {
                     Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["where": "{\"uniqueKey\":\"\(Networking.sharedInstance().userID ?? 0)\"}" as AnyObject], jsonBody: "") {
                         (results, error) in
                         guard let jsonResultArray = results![Constants.JSONResponseKeys.results] as! [[String : AnyObject]]? else { print(error.debugDescription); return }
-                        Networking.sharedInstance().name = jsonResultArray[0][Constants.JSONResponseKeys.name] as! String
-                        Networking.sharedInstance().lastName = jsonResultArray[0][Constants.JSONResponseKeys.lastName] as! String
-                        UserDefaults.standard.set(Networking.sharedInstance().name, forKey: Constants.JSONResponseKeys.name)
-                        UserDefaults.standard.set(Networking.sharedInstance().lastName, forKey: Constants.JSONResponseKeys.lastName)
+                        if !jsonResultArray.isEmpty {
+                            Networking.sharedInstance().name = jsonResultArray[0][Constants.JSONResponseKeys.name] as! String
+                            Networking.sharedInstance().lastName = jsonResultArray[0][Constants.JSONResponseKeys.lastName] as! String
+                            UserDefaults.standard.set(Networking.sharedInstance().name, forKey: Constants.JSONResponseKeys.name)
+                            UserDefaults.standard.set(Networking.sharedInstance().lastName, forKey: Constants.JSONResponseKeys.lastName)
+                        }
                     }
                     
                     DispatchQueue.main.async {

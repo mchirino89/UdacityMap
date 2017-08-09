@@ -21,6 +21,10 @@ class StudentListController: UIViewController {
         setWaitingView(isOn: true, waitingVisualEffect: waitingVisualEffect, view: view)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func studentUpdate(notification: Notification) -> Void {
         guard let userInfo = notification.userInfo,
             let isWaitingOn  = userInfo["isWaitingOn"] as? Bool else {

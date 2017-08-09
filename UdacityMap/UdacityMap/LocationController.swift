@@ -37,11 +37,6 @@ class LocationController: UIViewController {
         middleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showKeyboardAction)))
         questionView.addGestureRecognizer(dismissKeyboardTap)
         topVisualEffectView.addGestureRecognizer(dismissKeyboardTap)
-        // Testing
-        typedAddressTextField.text = "Barrio Obrero Tachira"
-        sharingTextField.text = "https://www.linkedin.com/in/mauriciochirino/"
-        locateAddressInMap(typedAddressTextField.text!)
-        submitButton.isEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

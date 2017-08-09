@@ -14,7 +14,7 @@ class MapController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var waitingVisualEffect: UIVisualEffectView!
     @IBOutlet weak var viewNavigationItem: UINavigationItem!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewNavigationItem.titleView = getCustomTitle()
