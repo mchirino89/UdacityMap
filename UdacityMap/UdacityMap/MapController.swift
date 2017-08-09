@@ -28,7 +28,7 @@ class MapController: UIViewController {
         NotificationCenter.default.post(name: updateStudentNotification, object: nil, userInfo: ["isWaitingOn": true])
         mapView.removeAnnotations(mapView.annotations)
         DispatchQueue.global(qos: .userInteractive).async {
-            Networking.sharedInstance().taskForGETMethod(URLExtension: "", host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject], jsonBody: "") {
+            Networking.sharedInstance().taskForGETMethod(host: false, path: Constants.Path.Students, parameters: ["limit": 100 as AnyObject], jsonBody: "") {
                 (results, error) in
                 if let error = error {
                     print(error)

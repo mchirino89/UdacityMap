@@ -24,11 +24,11 @@ class Networking: NSObject {
     
     // MARK: GET
     
-    func taskForGETMethod(URLExtension: String, host: Bool, path: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForGET: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
+    func taskForGETMethod(host: Bool, path: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForGET: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
         /* 2/3. Build the URL, Configure the request */
         
-        let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters, withPathExtension: URLExtension))
+        let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters))
         request.addValue(Constants.APIConfiguration.AppId, forHTTPHeaderField: Constants.ParameterKeys.AppId)
         request.addValue(Constants.APIConfiguration.ApiKey, forHTTPHeaderField: Constants.ParameterKeys.ApiKey)
         
@@ -66,10 +66,10 @@ class Networking: NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod(URLExtension: String, host: Bool, path: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
+    func taskForPOSTMethod(host: Bool, path: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters, withPathExtension: URLExtension))
+        let request = NSMutableURLRequest(url: URLFromParameters(host: host, path: path, parameters: parameters))
         request.httpMethod = "POST"
         request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.acceptance)
         request.addValue(Constants.JSONBodyKeys.appJSON, forHTTPHeaderField: Constants.HTTPHeaderField.content)
@@ -112,7 +112,7 @@ class Networking: NSObject {
     
     func taskForDELETEMethod(path: String, completionHandlerForPOST: @escaping (_ result: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
-        let request = NSMutableURLRequest(url: URLFromParameters(host: true, path: path, parameters: [:], withPathExtension: ""))
+        let request = NSMutableURLRequest(url: URLFromParameters(host: true, path: path, parameters: [:]))
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -177,12 +177,12 @@ class Networking: NSObject {
     }
     
     // create a URL from parameters
-    private func URLFromParameters(host: Bool, path: String, parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    private func URLFromParameters(host: Bool, path: String, parameters: [String:AnyObject]) -> URL {
         
         var components = URLComponents()
         components.scheme = Constants.APIConfiguration.ApiScheme
         components.host = host ? Constants.URL.Udacity : Constants.URL.Parse
-        components.path = path + (withPathExtension ?? "")
+        components.path = path
         components.queryItems = [URLQueryItem]()
         
         for (key, pairValue) in parameters {

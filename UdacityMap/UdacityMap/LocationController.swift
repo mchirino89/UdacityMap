@@ -157,7 +157,7 @@ class LocationController: UIViewController {
             
             // In here i'm getting 403 error but i'm following the API documentations you guys provided. Please help
             
-            Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: false, path: Constants.Path.Students, parameters: [:], jsonBody: jsonPayload) {
+            Networking.sharedInstance().taskForPOSTMethod(host: false, path: Constants.Path.Students, parameters: [:], jsonBody: jsonPayload) {
                 (results, error) in
                 if let error = error {
                     print(error)

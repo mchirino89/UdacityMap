@@ -45,7 +45,7 @@ class CredentialsController: UIViewController {
             // Quick question: Is this the proper form to prevent a retain cycle in here?
             [unowned self] in
             let jsonPayload = "{\"udacity\": {\"username\": \"\(self.emailTextField.text!)\", \"password\": \"\(self.passwordTextField.text!)\"}}"
-            Networking.sharedInstance().taskForPOSTMethod(URLExtension: "", host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
+            Networking.sharedInstance().taskForPOSTMethod(host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
                 (results, error) in
                 if let error = error {
                     print(error)
@@ -67,7 +67,10 @@ class CredentialsController: UIViewController {
                     UserDefaults.standard.set(Networking.sharedInstance().userID ?? 0, forKey: Constants.Session.AccountKey)
                     UserDefaults.standard.set(Networking.sharedInstance().sessionID ?? "user-token", forKey: Constants.Session.Id)
                     
-                    
+                    Networking.sharedInstance().taskForPOSTMethod(host: true, path: Constants.Path.SignIn, parameters: [:], jsonBody: jsonPayload) {
+                        (results, error) in
+                        
+                    }
                     
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: Constants.Storyboard.loginSegue, sender: nil)
