@@ -1,8 +1,15 @@
 # UdacityMap
-On the map project for Udacity's nanodegree iOS course
 
-Project built with vanilla Swift 3 (no `pods` for handling anything you see) due to requiriments below.
+ It allows to post user-generated location information to a shared map, pulling the locations of fellow Udacity's Nanodegree students, with custom messages about themselves or their learning experience.
 
-https://docs.google.com/document/d/1tPF1tmSzVYPSbpl7_JCeMKglKMIs3dUa4OrSAKEYNAs/pub?embedded=true
+## Getting Started
 
-Requirements: Xcode 8.3.3+ and internet connection.
+All that's required for this project to run is Xcode 8.3.3+ and an internet connection.
+
+## Contribute
+
+Feel free to fork the code, add some interesting new feature and make the proper pull request. I'll be more than happy to review it.
+
+## Credits
+
+iOS developer [Mauricio Chirino](https://www.linkedin.com/in/mauriciochirino/)

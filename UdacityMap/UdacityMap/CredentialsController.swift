@@ -17,11 +17,13 @@ class CredentialsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
         passwordTextField.enablesReturnKeyAutomatically = true
         emailTextField.enablesReturnKeyAutomatically = true
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAction)))
+//        emailTextField.text = "m.chirino89@gmail.com"
+//        passwordTextField.text = "QnkYyXRu4Z0is2mFFuffgpdQLPR0ssN8jI"
     }
     
     @IBAction func loginAction() {

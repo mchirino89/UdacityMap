@@ -51,11 +51,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fuM-oC-Cv0">
-                                            <rect key="frame" x="189" y="312.66666666666669" width="37" height="37"/>
+                                            <rect key="frame" x="189" y="313" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logging in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqi-Oa-eDH">
-                                            <rect key="frame" x="156.33333333333337" y="365.66666666666674" width="101.66666666666663" height="27.333333333333314"/>
+                                            <rect key="frame" x="156" y="366" width="102" height="28"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -71,23 +71,23 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="udacityLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2UO-gl-xOa">
-                                <rect key="frame" x="133.66666666666669" y="110.33333333333331" width="147.00000000000006" height="147.33333333333337"/>
+                                <rect key="frame" x="133" y="110" width="148" height="148"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2UO-gl-xOa" secondAttribute="height" multiplier="1:1" id="kZT-1V-BCK"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xm6-nB-q1O">
-                                <rect key="frame" x="123.66666666666669" y="282.66666666666674" width="167.66666666666663" height="27.333333333333314"/>
+                                <rect key="frame" x="123" y="283" width="168" height="28"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkU-iB-7sk">
-                                <rect key="frame" x="16.666666666666657" y="349.66666666666663" width="380.66666666666663" height="220.66666666666663"/>
+                                <rect key="frame" x="17" y="350" width="380" height="220"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zl1-3I-2cm">
-                                        <rect key="frame" x="0.0" y="0.0" width="380.66666666666663" height="49.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="380" height="49"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -97,7 +97,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l87-Mh-Yxm">
-                                        <rect key="frame" x="0.0" y="69.666666666666629" width="380.66666666666663" height="49.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="69" width="380" height="49"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -107,7 +107,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-ZV-ljU" customClass="ButtonStyle" customModule="UdacityMap" customModuleProvider="target">
-                                        <rect key="frame" x="45" y="159.33333333333331" width="100" height="100"/>
+                                        <rect key="frame" x="45" y="158" width="100" height="100"/>
                                         <color key="backgroundColor" red="1" green="0.2333333333" blue="0.0" alpha="0.94558005140000001" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="SfG-tc-pvO"/>
@@ -137,7 +137,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZZ-n6-CSK" customClass="ButtonStyle" customModule="UdacityMap" customModuleProvider="target">
-                                        <rect key="frame" x="236" y="159.66666666666663" width="100" height="100.00000000000006"/>
+                                        <rect key="frame" x="235" y="158" width="100" height="100"/>
                                         <color key="backgroundColor" red="1" green="0.2333333333" blue="0.0" alpha="0.94558005140000001" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TZZ-n6-CSK" secondAttribute="height" id="0Cg-DG-X11"/>
@@ -252,11 +252,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dBR-jA-hU3">
-                                            <rect key="frame" x="188.66666666666666" y="248.66666666666669" width="37" height="37"/>
+                                            <rect key="frame" x="189" y="249" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading students' list" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umm-Yp-hvM">
-                                            <rect key="frame" x="99.333333333333314" y="301.33333333333331" width="216" height="27.333333333333371"/>
+                                            <rect key="frame" x="99" y="302" width="216" height="28"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -277,18 +277,18 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="40M-QA-q6R" id="INN-wc-pDN">
-                                            <rect key="frame" x="0.0" y="0.0" width="367" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="world" translatesAutoresizingMaskIntoConstraints="NO" id="aEb-Ft-lQm">
-                                                    <rect key="frame" x="14.999999999999996" y="14.666666666666668" width="38.666666666666657" height="50"/>
+                                                    <rect key="frame" x="15" y="15" width="39" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="0Dn-yG-rUk"/>
                                                         <constraint firstAttribute="width" secondItem="aEb-Ft-lQm" secondAttribute="height" multiplier="52:67" id="ya7-Gu-cNg"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4C-eF-hD7">
-                                                    <rect key="frame" x="68.666666666666657" y="29.666666666666664" width="284.33333333333337" height="19.999999999999993"/>
+                                                    <rect key="frame" x="69" y="30" width="284" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -356,18 +356,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" mapType="standard" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqG-uW-7eR">
-                                <rect key="frame" x="0.0" y="128" width="414" height="607.33333333333337"/>
+                                <rect key="frame" x="0.0" y="129" width="414" height="607"/>
                                 <connections>
                                     <outlet property="delegate" destination="HMd-Ao-yKh" id="E9T-rn-O9y"/>
                                 </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zed-Aw-6k2" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="257.66666666666669"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5wc-Aj-fIf">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="257.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cWG-zK-YMJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="257.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh5-kM-hRD">
@@ -381,22 +381,22 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Gz-UR-6tp">
-                                                    <rect key="frame" x="83" y="64.333333333333343" width="248.33333333333331" height="167.33333333333331"/>
+                                                    <rect key="frame" x="83" y="64" width="248" height="168"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OMI-4j-rjc">
-                                                            <rect key="frame" x="20" y="0.0" width="208.66666666666669" height="50.333333333333343"/>
+                                                            <rect key="frame" x="20" y="0.0" width="209" height="51"/>
                                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="35"/>
                                                             <color key="textColor" red="0.4515329859582603" green="0.45982231942891333" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studying" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Mf-IN-qlT">
-                                                            <rect key="frame" x="55" y="58.666666666666671" width="138.33333333333331" height="50"/>
+                                                            <rect key="frame" x="55" y="59" width="139" height="51"/>
                                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="35"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RfM-nW-RM5">
-                                                            <rect key="frame" x="75.666666666666657" y="117.00000000000003" width="97.333333333333343" height="50.333333333333314"/>
+                                                            <rect key="frame" x="75" y="117" width="98" height="51"/>
                                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="35"/>
                                                             <color key="textColor" red="0.4515329859582603" green="0.45982231942891333" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -416,10 +416,10 @@
                                                     </constraints>
                                                 </view>
                                                 <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpW-Ml-1d3">
-                                                    <rect key="frame" x="20.666666666666657" y="64.333333333333343" width="372.66666666666663" height="167.33333333333331"/>
+                                                    <rect key="frame" x="21" y="64" width="372" height="168"/>
                                                     <subviews>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter link to share here" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-7U-zIO">
-                                                            <rect key="frame" x="0.66666666666665719" y="33.000000000000007" width="372.33333333333337" height="101.66666666666669"/>
+                                                            <rect key="frame" x="-1" y="33" width="373" height="102"/>
                                                             <color key="textColor" red="0.96462470290000002" green="0.96475964780000001" blue="0.96458214519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -465,10 +465,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnl-va-eOm">
-                                <rect key="frame" x="0.0" y="257.66666666666663" width="414" height="291.66666666666663"/>
+                                <rect key="frame" x="0.0" y="258" width="414" height="291"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your location here " textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KoV-eg-vkM">
-                                        <rect key="frame" x="20.333333333333343" y="94.666666666666629" width="372.33333333333337" height="101.66666666666669"/>
+                                        <rect key="frame" x="20" y="94" width="373" height="102"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -492,13 +492,13 @@
                                 </constraints>
                             </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31D-R7-FIW">
-                                <rect key="frame" x="0.0" y="549.33333333333348" width="414" height="186.66666666666663"/>
+                                <rect key="frame" x="0.0" y="549" width="414" height="187"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="25R-T7-0UA">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="186.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="187"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PA-No-A5K" customClass="ButtonStyle" customModule="UdacityMap" customModuleProvider="target">
-                                            <rect key="frame" x="93.333333333333343" y="74.666666666666629" width="227.66666666666666" height="37.666666666666629"/>
+                                            <rect key="frame" x="93" y="75" width="228" height="38"/>
                                             <color key="backgroundColor" red="0.94893962139999999" green="0.94907253979999995" blue="0.94889777900000005" alpha="0.68795483732876717" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" title="Find on the map">
@@ -529,10 +529,10 @@
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-Uf-uWd">
-                                <rect key="frame" x="0.0" y="549.33333333333348" width="414" height="186.66666666666663"/>
+                                <rect key="frame" x="0.0" y="549" width="414" height="187"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUb-kc-aVx" customClass="ButtonStyle" customModule="UdacityMap" customModuleProvider="target">
-                                        <rect key="frame" x="157.33333333333331" y="43" width="99.999999999999943" height="100"/>
+                                        <rect key="frame" x="157" y="44" width="100" height="100"/>
                                         <color key="backgroundColor" red="1" green="0.2333333333" blue="0.0" alpha="0.94558005140000001" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="CpK-7d-yue"/>
@@ -657,11 +657,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Po0-he-Z57">
-                                            <rect key="frame" x="188.66666666666666" y="248.66666666666669" width="37" height="37"/>
+                                            <rect key="frame" x="189" y="249" width="37" height="37"/>
                                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading students' pins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOa-Kr-Oh1">
-                                            <rect key="frame" x="95.333333333333343" y="301.33333333333331" width="223.66666666666666" height="27.333333333333371"/>
+                                            <rect key="frame" x="95" y="302" width="224" height="28"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -738,6 +738,6 @@
         <image name="world" width="52" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zNG-tC-nV0"/>
+        <segue reference="Xav-gU-Nik"/>
     </inferredMetricsTieBreakers>
 </document>
